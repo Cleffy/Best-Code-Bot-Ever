@@ -1,19 +1,22 @@
-const { gql } = require('apollo-server-express');
+import { gql } from 'apollo-server-express';
 
 const typeDefs = gql`
   type User {
     _id: ID
     username: String
     email: String
-    password: String
-    history: [APIquery]
+    history: [Chat]
   }
 
-  type APIquery {
+  type Chat {
     _id: ID
-    prompt: String
-    apiResponse: String
-    responseURL: String
+    response: [Response]
+    createdOn: String
+   }
+
+   type Response {
+    responseText: String
+    username: String
     createdOn: String
    }
 
@@ -23,15 +26,16 @@ const typeDefs = gql`
   }
 
   type Query {
-    users: [User]
     user: User
- 
+    chat(_id: ID): Chat
   }
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
+    createChat:User
+    createResponse(responseText: String, username:String, chatId: ID):Chat
   }
 `;
 
-module.exports = typeDefs;
+export default typeDefs;

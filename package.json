@@ -13,6 +13,7 @@
   "author": "Best Code Bot Team Ever",
   "license": "ISC",
   "dependencies": {
-    "concurrently": "^8.2.1"
+    "concurrently": "^8.2.1",
+    "dotenv": "^16.3.1"
   }
 }
