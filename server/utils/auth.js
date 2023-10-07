@@ -1,3 +1,5 @@
+// JWT backend authentication file that establishes user context for resolvers and server file.
+
 const jwt = require('jsonwebtoken');
 const { GraphQLError } = require('graphql');
 const secret = 'oursecretbot';   // leave this here while we are developing, but make a .env file once the backend created. so this line will reference process.env.SECRET instead of the current string.
