@@ -74,8 +74,8 @@ const resolvers = {
     },
     createResponse: async (parent, args, context) => {
       if (context.user) {
-        const openai = await new OpenAI({
-          apiKey: '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', // defaults to process.env["OPENAI_API_KEY"]
+        const openai =  new OpenAI({
+          apiKey: process.env.OPEN_AI_APIKEY, // defaults to process.env["OPENAI_API_KEY"]
         });
         
 
