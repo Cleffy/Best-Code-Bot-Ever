@@ -1,8 +1,7 @@
-const {Schema, model} = require('mongoose');
-const bcrypt = require('bcrypt');
+import { Schema, model } from 'mongoose';
+import bcrypt from 'bcrypt';
 
-
-const UserSchema = new Schema({
+const userSchema = new Schema({
     username: {
         type: String,
         unique: true,
@@ -23,32 +22,33 @@ const UserSchema = new Schema({
     history: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'APIquery'
+            ref: 'Chat'
         }
     ]
 
     // virtuals is here if we need it, but not necessary.    
 },
-{
-    toJSON:{
-        virtuals: true
-    }
-})
+    {
+        toJSON: {
+            virtuals: true
+        },
+        id: false
+    })
 
-UserSchema.pre('save', async function (next) {
+userSchema.pre('save', async function (next) {
     if (this.isNew || this.isModified('password')) {
-      const saltRounds = 10;
-      this.password = await bcrypt.hash(this.password, saltRounds);
+        const saltRounds = 10;
+        this.password = await bcrypt.hash(this.password, saltRounds);
     }
-  
+
     next();
-  });
-  
-  // This is a method that compares and validate passwords that user types in at login compared to what is stored in the database
-  UserSchema.methods.isCorrectPassword = async function (password) {
+});
+
+// This is a method that compares and validate passwords that user types in at login compared to what is stored in the database
+userSchema.methods.isCorrectPassword = async function (password) {
     return bcrypt.compare(password, this.password);
-  };
+};
 
-const User = model('User', UserSchema);
+const User = model('User', userSchema);
 
-module.exports = User;
+export default User;
