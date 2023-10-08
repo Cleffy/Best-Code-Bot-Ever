@@ -1,2 +1,20 @@
-// Take queries from the backend and add them into a variable to be exported
-// Reference Mern mini project
+import { gql } from '@apollo/client';
+
+export const QUERY_USER = gql`
+query User {
+    user {
+      _id
+      username
+      email
+      history {
+        _id
+        createdOn
+        responses {
+          createdOn
+          responseText
+          username
+        }
+      }
+    }
+  }
+  `;
