@@ -10,7 +10,7 @@ const typeDefs = gql`
 
   type Chat {
     _id: ID
-    response: [Response]
+    responses: [Response]
     createdOn: String
    }
 
