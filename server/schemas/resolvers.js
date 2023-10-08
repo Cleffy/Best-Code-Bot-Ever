@@ -56,11 +56,12 @@ const resolvers = {
     createChat: async (parent, args, context) => {
       console.log('user', context.user);
       if (context.user) {
+        // this function creates the new chat
         const chat = await Chat.create({
           username: context.user.username
         })
 
-
+// then the new chat ID is stored in the users account
         const user = await User.findByIdAndUpdate(
           { _id: context.user._id },
           { $push: { history: chat._id } },
@@ -104,7 +105,7 @@ const resolvers = {
           username: 'Code-Bot'
         };
 
-        console.log(chatResponseObj);
+        // console.log(chatResponseObj);
 
         const apiResponse = await Chat.findByIdAndUpdate(
           { _id: args.chatId }, //References Chat Id

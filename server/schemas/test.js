@@ -20,7 +20,7 @@ const openai = new OpenAI({
 
 // async function example() {
 //     const api = new ChatGPTAPI({
-//       apiKey: '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'
+//       apiKey: ''
 //     })
   
 //     const res = await api.sendMessage('Hello World!')
