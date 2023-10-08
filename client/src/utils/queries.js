@@ -18,3 +18,17 @@ query User {
     }
   }
   `;
+
+  export const QUERY_CHAT = gql`
+  query Chat {
+    chat {
+      _id
+      responses {
+        responseText
+        username
+        createdOn
+      }
+      createdOn
+    }
+    }
+  `;
