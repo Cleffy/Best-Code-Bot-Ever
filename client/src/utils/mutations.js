@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const ADD_USER = gql`
-mutation AddUser($username: String!, $email: String!, $password: String!) {
+mutation addUser($username: String!, $email: String!, $password: String!) {
     addUser(username: $username, email: $email, password: $password) {
       token
       user {
@@ -14,7 +14,7 @@ mutation AddUser($username: String!, $email: String!, $password: String!) {
   `;
 
 export const CREATE_CHAT = gql`
-mutation CreateChat {
+mutation createChat {
     createChat {
       _id
       username
@@ -27,7 +27,7 @@ mutation CreateChat {
   `;
 
   export const LOGIN = gql`
-  mutation Login($email: String!, $password: String!) {
+  mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
       token
       user {
@@ -40,7 +40,7 @@ mutation CreateChat {
   `;
 
   export const CREATE_RESPONSE = gql`
-  mutation CreateResponse($responseText: String, $username: String, $chatId: ID) {
+  mutation createResponse($responseText: String, $username: String, $chatId: ID) {
     createResponse(responseText: $responseText, username: $username, chatId: $chatId) {
       _id
       responses{
