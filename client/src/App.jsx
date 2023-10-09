@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   ApolloClient,
   InMemoryCache,
@@ -8,19 +7,19 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-//import { AuthService, RequireAuth } from './utils/auth';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Chat from './pages/Chat';
 import History from './pages/History';
-import './App.css'
+import './App.css';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
 
+//create a token authentication link on local storage
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('id_token');
   return {
@@ -31,14 +30,13 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
+//create an Apollo client that links to auth token
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
 function App() {
-  //const [count, setCount] = useState(0)
-
   return (
     <ApolloProvider client={client}>
       <BrowserRouter>
@@ -47,8 +45,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="register" element={<Register />} />
             <Route path="login" element={<Login />} />
-              <Route path="chat" element={<Chat />} />
-              <Route path="history" element={<History />} />
+            <Route path="chat" element={<Chat />} />
+            <Route path="history" element={<History />} />
           </Route>
         </Routes>
       </BrowserRouter>
@@ -56,4 +54,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
