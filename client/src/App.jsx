@@ -7,7 +7,9 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Layout from './components/Layout';
+import HomeLayout from './components/HomeLayout';
+import UserLayout from './components/UserLayout';
+import MainLayout from './components/MainLayout';
 import Home from './pages/Home';
 import Register from './pages/Register';
 //import Login from './pages/Login';
@@ -41,11 +43,19 @@ function App() {
     <ApolloProvider client={client}>
       <BrowserRouter>
         <Routes>
-          <Route element={<Layout />}>
+          <Route element={<HomeLayout />}>
             <Route path="/" element={<Home />} />
+          </Route>
+          <Route element={<UserLayout />}>
             <Route path="register" element={<Register />} />
             {/*
             <Route path="login" element={<Login />} />            
+            <Route path="chat" element={<Chat />} />
+            <Route path="history" element={<History />} />
+            */}
+          </Route>
+          <Route element={<MainLayout />}>
+            {/*         
             <Route path="chat" element={<Chat />} />
             <Route path="history" element={<History />} />
             */}
