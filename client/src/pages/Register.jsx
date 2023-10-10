@@ -55,7 +55,7 @@ const SignupForm = () => {
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
           There was an error completing your sign up.
         </Alert>
-
+        <h1>Code Bot</h1>
         <Form.Group className='mb-3'>
           <Form.Label htmlFor='username'>Username</Form.Label>
           <Form.Control
