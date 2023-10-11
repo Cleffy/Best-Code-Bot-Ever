@@ -2,13 +2,13 @@ import express from 'express';
 import cors from 'cors';
 import { ApolloServer } from 'apollo-server-express';
 import path from 'path';
-import { URL } from 'url';
+import { fileURLToPath } from 'url';
 
 import { authMiddleware } from './utils/auth.js';
 import { typeDefs, resolvers } from './schemas/index.js';
 import db from './config/connection.js';
 
-const __dirname = path.dirname(new URL(import.meta.url).pathname).replace(/^\\([A=Z]:\\)/, '$1');
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PORT = process.env.PORT || 3001;
 const app = express();
 
@@ -24,11 +24,11 @@ app.use(express.json());
 app.use(cors());
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('/client/build'));
+  app.use(express.static(__dirname, '..', 'client/build'));
 }
   
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client'));
+  res.sendFile(path.join(__dirname, '..', 'client'));
 })
 
 const startApolloServer = async (typeDefs, resolvers) => {
