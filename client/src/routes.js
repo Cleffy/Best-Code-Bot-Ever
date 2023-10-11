@@ -2,7 +2,6 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-
 import NewChat from './components/NewChat'; 
 import History from './components/History'; 
 import SignOut from './components/SignOut'; 
