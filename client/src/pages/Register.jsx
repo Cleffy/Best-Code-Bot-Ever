@@ -5,7 +5,7 @@ import {ADD_USER} from '../utils/mutations';
 import {useMutation} from '@apollo/client';
 import Auth from '../utils/auth';
 
-const SignupForm = () => {
+const RegisterForm = () => {
   // Sets initial form state
   const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
   // Sets state for form validation
@@ -22,7 +22,7 @@ const SignupForm = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    // Checks if form has everything 
+    // Checks if form has all required inputs 
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -55,7 +55,7 @@ const SignupForm = () => {
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
           There was an error completing your sign up.
         </Alert>
-        <h3>Sign up</h3>
+        <h3>Register</h3>
         <Form.Group className='mb-3'>
           {/*<Form.Label htmlFor='username'>Username</Form.Label>*/}
           <Form.Control
@@ -105,4 +105,4 @@ const SignupForm = () => {
   );
 };
 
-export default SignupForm;
+export default RegisterForm;
