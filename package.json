@@ -8,8 +8,7 @@
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm run dev\"",
     "client": "cd client && npm install && npm run build && cd ..",
     "server": "cd server && npm install && cd ..",
-    "install": "npm run client && npm run server",
-    "heroku-postbuild": "npm run install"
+    "install": "npm run client && npm run server"
   },
   "author": "Best Code Bot Team Ever",
   "license": "ISC",
