@@ -1,36 +1,24 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 const Menu = () => {
-  
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
   };
 
-  
   return (
     <div className="menu">
-      <button onClick={toggleMenu}>Menu</button>
-      {menuOpen && (
-        <ul>
-          <li>
-            <Link to="/new-chat">New Chat</Link>
-          </li>
-          <li>
-            <Link to="/history">History</Link>
-          </li>
-          <li>
-            <Link to="/sign-out">Sign Out</Link>
-          </li>
-        </ul>
+      <button onClick={toggleDropdown}>Menu</button>
+      {isDropdownOpen && (
+        <div className="dropdown-content">
+          <a href="/new-chat">New Chat</a>
+          <a href="/history">History</a>
+          <a href="/sign-out">Sign Out</a>
+        </div>
       )}
     </div>
   );
 };
 
 export default Menu;
-
-
