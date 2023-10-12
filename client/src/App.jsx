@@ -12,9 +12,11 @@ import UserLayout from './components/UserLayout';
 import MainLayout from './components/MainLayout';
 import Home from './pages/Home';
 import Register from './pages/Register';
-// import Login from './pages/Login';
-// import Chat from './pages/Chat';
-// import History from './pages/History';
+
+import Login from './pages/Login';
+//import Chat from './pages/Chat';
+//import History from './pages/History';
+
 import './App.css';
 
 const httpLink = createHttpLink({
@@ -48,11 +50,7 @@ function App() {
           </Route>
           <Route element={<UserLayout />}>
             <Route path="register" element={<Register />} />
-            {/*
-            <Route path="login" element={<Login />} />            
-            <Route path="chat" element={<Chat />} />
-            <Route path="history" element={<History />} />
-            */}
+            <Route path="login" element={<Login />} />
           </Route>
           <Route element={<MainLayout />}>
             {/*         
