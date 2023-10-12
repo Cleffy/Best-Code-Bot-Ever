@@ -12,9 +12,9 @@ import UserLayout from './components/UserLayout';
 import MainLayout from './components/MainLayout';
 import Home from './pages/Home';
 import Register from './pages/Register';
-//import Login from './pages/Login';
-//import Chat from './pages/Chat';
-//import History from './pages/History';
+// import Login from './pages/Login';
+// import Chat from './pages/Chat';
+// import History from './pages/History';
 import './App.css';
 
 const httpLink = createHttpLink({
