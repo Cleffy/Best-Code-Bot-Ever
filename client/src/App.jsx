@@ -12,10 +12,10 @@ import UserLayout from './components/UserLayout';
 import MainLayout from './components/MainLayout';
 import Home from './pages/Home';
 import Register from './pages/Register';
-
 import Login from './pages/Login';
-//import Chat from './pages/Chat';
-//import History from './pages/History';
+import Chat from './pages/Chat';
+import History from './pages/History';
+import FourOhFour from './pages/404';
 
 import './App.css';
 
@@ -52,12 +52,11 @@ function App() {
             <Route path="register" element={<Register />} />
             <Route path="login" element={<Login />} />
           </Route>
-          <Route element={<MainLayout />}>
-            {/*         
+          <Route element={<MainLayout />}>    
             <Route path="chat" element={<Chat />} />
             <Route path="history" element={<History />} />
-            */}
           </Route>
+          <Route path="*" element={<FourOhFour />} />
         </Routes>
       </BrowserRouter>
     </ApolloProvider>
