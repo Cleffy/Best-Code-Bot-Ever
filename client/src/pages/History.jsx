@@ -14,7 +14,7 @@ import { QUERY_CHAT } from '../utils/queries';
 const History = () => {
 
     const { loading, data } = useQuery(QUERY_CHAT);
-    const userChats = data?.userChats || {}; // no idea if this is going to work
+    const userChats = data?.me || {}; // no idea if this is going to work
     console.log('data: ', data);
     console.log('userChats: ', userChats);
 
