@@ -9,7 +9,7 @@ function Home() {
              <button onClick= {()=> {
                 navigate('/register')
              }}>Sign Up</button>
-           <button onCick= {() => {
+           <button onClick= {() => {
                 navigate('/login')
            }}>Log In</button>
             {/* The Log Out button was placed here for now so the team can log in and out of the app for testing. In the future it will conditionally render only when a user is logged in. */}
