@@ -1,4 +1,5 @@
 import { Outlet } from 'react-router-dom';
+import { Menu } from 'Menu';
 
 function MainLayout() {
   return (
@@ -6,9 +7,7 @@ function MainLayout() {
         <header>
             {/*<img src="" alt="Code Bot Logo" />*/}
             <h1>Code Bot</h1>
-            <div id="menuBtn">
-                <button>Menu</button>
-            </div>
+            <Menu />
         </header>
         <Outlet />
     </div>
