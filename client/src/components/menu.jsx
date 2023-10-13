@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 
 const Menu = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -12,9 +13,9 @@ const Menu = () => {
       <button onClick={toggleDropdown}>Menu</button>
       {isDropdownOpen && (
         <div className="dropdown-content">
-          <a href="/new-chat">New Chat</a>
-          <a href="/history">History</a>
-          <a href="/sign-out">Sign Out</a>
+          <Link to="/new-chat">New Chat</Link>
+          <Link to="/history">History</Link>
+          <Link to="/sign-out">Sign Out</Link>
         </div>
       )}
     </div>
