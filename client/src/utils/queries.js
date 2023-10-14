@@ -23,12 +23,12 @@ query user {
   query chat {
     chat {
       _id
+      createdOn
       responses {
         responseText
         username
         createdOn
       }
-      createdOn
     }
     }
   `;
