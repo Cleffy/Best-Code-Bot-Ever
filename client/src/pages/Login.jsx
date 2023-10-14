@@ -44,6 +44,7 @@ const LoginForm = () => {
       email: '',
       password: '',
     });
+    window.location.assign('/chat')
   };
 
   return (

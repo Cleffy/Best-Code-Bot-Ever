@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
-
+import { validateEmail } from '../utils/helpers';
 import {ADD_USER} from '../utils/mutations';
 import {useMutation} from '@apollo/client';
 import Auth from '../utils/auth';
@@ -13,15 +13,41 @@ const RegisterForm = () => {
   // Sets state for alert
   const [showAlert, setShowAlert] = useState(false);
   const [addUser] = useMutation(ADD_USER)
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setUserFormData({ ...userFormData, [name]: value });
+
+    // if (!event.target.value.length){
+    //   setErrorMessage(`${event.target.name} is required.`)
+    // } else {
+    //   setErrorMessage('')
+    // }
+    // if (event.target.name === 'email') {
+    //   const isValid = validateEmail(event.target.value);
+    //   // isValid conditional statement
+    //   if (!isValid) {
+    //     setErrorMessage('Your email is invalid.');
+    //   } else {
+    //     setErrorMessage('');
+    //   }
+    // }
+    // if (event.type === 'blur' && !event.target.value.length){
+    //   setErrorMessage(`${event.target.name} field is required`);
+    // } else {
+    //   setErrorMessage('');
+    // }
+    if (!errorMessage){
+      setUserFormData({ ...userFormData, [name]: value });
+    }
   };
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
+    // if (!userFormData.username || !userFormData.email || !userFormData.password){
+    //   setErrorMessage('All fields are required.')
+    // }
+    // console.log(userFormData)
     // Checks if form has all required inputs 
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -30,11 +56,19 @@ const RegisterForm = () => {
     }
 
     try {
+
         const{data} = await addUser({variables:{...userFormData} })
         console.log(data)
 
 
       Auth.login(data.addUser.token);
+       console.log(Auth.loggedIn())
+    if (Auth.loggedIn() === false){
+      setErrorMessage('Something went wrong.')
+     
+    } else {
+       window.location.assign('/chat')
+    }
     } catch (err) {
       console.error(err);
       setShowAlert(true);
@@ -45,6 +79,7 @@ const RegisterForm = () => {
       email: '',
       password: '',
     });
+   
   };
 
   return (
@@ -53,20 +88,20 @@ const RegisterForm = () => {
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
         {/* Displays an alert if server response is bad */}
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
-          There was an error completing your sign up.
+          A valid username, email and password are required.
         </Alert>
         <h3>Register</h3>
         <Form.Group className='mb-3'>
           {/*<Form.Label htmlFor='username'>Username</Form.Label>*/}
           <Form.Control
             type='text'
-            placeholder='Name'
+            placeholder='Username'
             name='username'
             onChange={handleInputChange}
-            value={userFormData.username}
+            defaultValue={userFormData.username}
             required
           />
-          <Form.Control.Feedback type='invalid'>Username is required.</Form.Control.Feedback>
+          {/* <Form.Control.Feedback type='invalid'>Username is required.</Form.Control.Feedback> */}
         </Form.Group>
 
         <Form.Group className='mb-3'>
@@ -76,10 +111,10 @@ const RegisterForm = () => {
             placeholder='Email'
             name='email'
             onChange={handleInputChange}
-            value={userFormData.email}
+          defaultValue={userFormData.email}
             required
           />
-          <Form.Control.Feedback type='invalid'>Email is required.</Form.Control.Feedback>
+          {/* <Form.Control.Feedback type='invalid'>Email is required.</Form.Control.Feedback> */}
         </Form.Group>
 
         <Form.Group className='mb-3'>
@@ -89,13 +124,17 @@ const RegisterForm = () => {
             placeholder='Password'
             name='password'
             onChange={handleInputChange}
-            value={userFormData.password}
+          defaultValue={userFormData.password}
             required
           />
-          <Form.Control.Feedback type='invalid'>Password is required.</Form.Control.Feedback>
+          {/* <Form.Control.Feedback type='invalid'>Password is required.</Form.Control.Feedback> */}
         </Form.Group>
+        {errorMessage && (
+          <div>
+            <p className="error-text">{errorMessage}</p>
+          </div>
+        )}
         <Button
-          disabled={!(userFormData.username && userFormData.email && userFormData.password)}
           type='submit'
           variant='success'>
           Submit
