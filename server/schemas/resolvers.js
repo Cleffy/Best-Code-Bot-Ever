@@ -68,7 +68,7 @@ const resolvers = {
           { new: true }
         )
 
-        return user
+        return chat
 
       }
       throw AuthenticationError;
