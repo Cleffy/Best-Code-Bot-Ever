@@ -14,16 +14,17 @@ mutation addUser($username: String!, $email: String!, $password: String!) {
   `;
 
 export const CREATE_CHAT = gql`
-mutation createChat {
-    createChat {
-      _id
+mutation Mutation {
+  createChat {
+    _id
+    createdOn
+    responses {
+      createdOn
+      responseText
       username
-      email
-      history {
-        _id
-      }
     }
   }
+}
   `;
 
   export const LOGIN = gql`

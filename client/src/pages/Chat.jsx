@@ -1,38 +1,60 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
-import { QUERY_USER } from "../utils/queries";
 import { QUERY_CHAT } from "../utils/queries";
 import { CREATE_CHAT } from "../utils/mutations";
 import { CREATE_RESPONSE } from "../utils/mutations";
+import History from "./History";
 
 
 
 const Chat = () => {
   const [chatOpen, setChatOpen] = useState(false);
-  const [responseOpen, setResponseOpen] = useState(false);
-  const [sendButton, setSendButton] = useState(false);
-  const { loading, error, data } = useQuery(QUERY_CHAT);
+
+  const [createChat, { newChatError }] = useMutation(CREATE_CHAT, {
+    onCompleted: (data) => {
+      setChatData(data); // Set `chatData` when the chat is created
+      setChatOpen(true); // Set `chatOpen` to `true` after the chat is created
+    },
+  });
+  const [createResponse, {createResponseError}] = useMutation(CREATE_RESPONSE)
+  const [chatData, setChatData] = useState({})
+  const [currentQuestion, setCurrentQuestion] = useState('')
   
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
-  const [createChat, {newChatData}] = useMutation(CREATE_CHAT);
 
   useEffect(() => {
-    console.log(newChatData);
-  }, [newChatData]);
-  function createNewChat() {
-
+    if(chatData){
+      console.log(chatData)
+    }
+    
+  }, [chatData])
+  
+  const handleNewChat = async () => {
+   
+    try{
+      const {data} = await createChat()
+      setChatData(data)
+    }catch(err){
+      console.log(err)
+    }
   }
-  
-  const [createResponse, {newResponseData}] = useMutation(CREATE_RESPONSE);
- 
-  useEffect(() => {
-    console.log(newResponseData);
-  }, [newResponseData]);
-  
+  const handleInputChange = (event) => {
+    const newValue = event.target.value;
+    setCurrentQuestion(newValue);
+  };
+  const handleQuestionSubmit = async () => {
+    console.log(chatData.createChat._id)
+    const {data} = await createResponse({
+      variables: {
+        chatId: chatData.createChat._id,
+        responseText: currentQuestion
+      }
+    })
+    const updatedChat = {...chatData}
+    updatedChat.createChat.responses = [...data.createResponse.responses]
+    setChatData(updatedChat)
+    console.log('response: ', data)
+  }
 
   return (
     <>
@@ -45,13 +67,10 @@ const Chat = () => {
       </div>
 
       <div className="response-box"></div>
-      
       {!chatOpen ? (
         <button
           onClick={() => {
-            setChatOpen(true);
-            setSendButton(true);
-            createChat();
+            handleNewChat()
           }}
         >
           {" "}
@@ -63,29 +82,22 @@ const Chat = () => {
 
       {chatOpen ? (
         <div>
-          <h3>Enter Coding Questions Below</h3>
-          <input type="text" placeholder="Type your message..." />
+          <h1>New Chat</h1>
+          <input type="text" placeholder="Type your message..." onChange={handleInputChange}/>
+          {/* Button to send messages */}
+          <button onClick={handleQuestionSubmit}>Send</button>
+          
+          <div>
+            {chatData.createChat.responses.map((response, index) => {
+              return <p key={index}>{response.responseText}</p>
+            })}
+          </div>
         </div>
+        
       ) : (
         <></>
       )}
-
-      {!responseOpen ? (
-        <button onClick={() => {
-          setResponseOpen(true);
-          createResponse();
-        }}>Send</button>
-        ) : (
-          <></>
-        )}
-
-        {responseOpen ? (
-          <div>
-            <input type="text" placeholder="Answer Will Appear Here" />
-          </div>
-          ) : (
-            <></>
-          )}
+      <History/>
     </>
   );
 };
