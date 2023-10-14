@@ -16,14 +16,15 @@ query user {
         }
       }
     }
-  }
+ }
   `;
 
   export const QUERY_CHAT = gql`
-  query chat {
-    chat {
+  query chat($_id: ID) {
+    chat(_id: $_id) {
       _id
       createdOn
+      username
       responses {
         responseText
         username

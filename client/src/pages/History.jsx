@@ -9,14 +9,43 @@ import {
 
 import Auth from '../utils/auth';
 import { useQuery } from '@apollo/client';
-import { QUERY_CHAT } from '../utils/queries';
+import { QUERY_CHAT,QUERY_USER } from '../utils/queries';
 
 const History = () => {
+    //const {loading,data } = useQuery(QUERY_USER)
 
-    const { loading, data } = useQuery(QUERY_CHAT);
-    const userChats = data?.me || {}; // no idea if this is going to work
-    console.log('data: ', data);
-    console.log('userChats: ', userChats);
+    //const userData = data?.user || {}
+    //console.log(userData)
+
+    const userData =  {
+            _id: "652b01a82737b3119b174929",
+            username: "eric",
+            history: [
+                {
+                    _id:"652b09612fdf8b8dd66e5268",
+                    responses: [
+                        {
+                            responseText: "hi also",
+                            username:"eric"
+                        }
+                    ],
+                    username: "eric"
+                },
+              
+            ]
+        }
+    
+     userData.history.forEach(chats => {
+       console.log(chats._id)
+   const { data } = useQuery(QUERY_CHAT,{
+        variables: {_id: chats._id }
+    })
+   const userChats = data?.chat || {}
+    console.log(userChats)
+})
+    ; // no idea if this is going to work
+    //console.log('data: ', data);
+   // console.log('userChats: ', userChats);
 
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -24,9 +53,9 @@ const History = () => {
         return false;
     }
 
-    if (loading) {
-        return <h2>Loading...</h2>;
-    }
+    // if (loading) {
+    //     return <div>Loading...</div>;
+    // }
 
     return (
         <Container>
@@ -36,6 +65,7 @@ const History = () => {
                         <Card.Body>
                             <Card.Title>History</Card.Title>
                             <Card.Text>
+                                
                                 <Button>
                                     Chat 1
                                 </Button>

@@ -19,6 +19,8 @@ const userSchema = new Schema({
         required: 'Please enter a password',
         minlength: 8
     },
+
+
     history: [
         {
             type: Schema.Types.ObjectId,
