@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
-import { validateEmail } from '../utils/helpers';
 import {ADD_USER} from '../utils/mutations';
 import {useMutation} from '@apollo/client';
 import Auth from '../utils/auth';
@@ -18,25 +17,6 @@ const RegisterForm = () => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
 
-    // if (!event.target.value.length){
-    //   setErrorMessage(`${event.target.name} is required.`)
-    // } else {
-    //   setErrorMessage('')
-    // }
-    // if (event.target.name === 'email') {
-    //   const isValid = validateEmail(event.target.value);
-    //   // isValid conditional statement
-    //   if (!isValid) {
-    //     setErrorMessage('Your email is invalid.');
-    //   } else {
-    //     setErrorMessage('');
-    //   }
-    // }
-    // if (event.type === 'blur' && !event.target.value.length){
-    //   setErrorMessage(`${event.target.name} field is required`);
-    // } else {
-    //   setErrorMessage('');
-    // }
     if (!errorMessage){
       setUserFormData({ ...userFormData, [name]: value });
     }
@@ -44,10 +24,7 @@ const RegisterForm = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    // if (!userFormData.username || !userFormData.email || !userFormData.password){
-    //   setErrorMessage('All fields are required.')
-    // }
-    // console.log(userFormData)
+
     // Checks if form has all required inputs 
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -64,8 +41,9 @@ const RegisterForm = () => {
       Auth.login(data.addUser.token);
        console.log(Auth.loggedIn())
     if (Auth.loggedIn() === false){
-      setErrorMessage('Something went wrong.')
-     
+      //will most likely get rid of this code
+      setErrorMessage(' A valid username, email and password are required.')
+     console.log("Sign Up failed due to missing fields")
     } else {
        window.location.assign('/chat')
     }
@@ -98,12 +76,11 @@ const RegisterForm = () => {
             placeholder='Username'
             name='username'
             onChange={handleInputChange}
-            defaultValue={userFormData.username}
+            value={userFormData.username}
             required
           />
-          {/* <Form.Control.Feedback type='invalid'>Username is required.</Form.Control.Feedback> */}
+        
         </Form.Group>
-
         <Form.Group className='mb-3'>
           {/*<Form.Label htmlFor='email'>Email</Form.Label>*/}
           <Form.Control
@@ -111,12 +88,11 @@ const RegisterForm = () => {
             placeholder='Email'
             name='email'
             onChange={handleInputChange}
-          defaultValue={userFormData.email}
+            value={userFormData.email}
             required
           />
-          {/* <Form.Control.Feedback type='invalid'>Email is required.</Form.Control.Feedback> */}
+       
         </Form.Group>
-
         <Form.Group className='mb-3'>
           {/*<Form.Label htmlFor='password'>Password</Form.Label>*/}
           <Form.Control
@@ -124,10 +100,10 @@ const RegisterForm = () => {
             placeholder='Password'
             name='password'
             onChange={handleInputChange}
-          defaultValue={userFormData.password}
+            value={userFormData.password}
             required
           />
-          {/* <Form.Control.Feedback type='invalid'>Password is required.</Form.Control.Feedback> */}
+      
         </Form.Group>
         {errorMessage && (
           <div>

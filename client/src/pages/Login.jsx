@@ -13,6 +13,7 @@ const LoginForm = () => {
   // Sets state for alert
   const [showAlert, setShowAlert] = useState(false);
   const [login] = useMutation(LOGIN)
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -35,6 +36,14 @@ const LoginForm = () => {
 
 
       Auth.login(data.login.token);
+
+      if (Auth.loggedIn() === false){
+        //will most likely get rid of this code
+          setErrorMessage('A valid email and password are required.')
+       console.log("Log In failed due to missing fields")
+      } else {
+         window.location.assign('/chat')
+      }
     } catch (err) {
       console.error(err);
       setShowAlert(true);
@@ -44,7 +53,7 @@ const LoginForm = () => {
       email: '',
       password: '',
     });
-    window.location.assign('/chat')
+   
   };
 
   return (
@@ -53,7 +62,7 @@ const LoginForm = () => {
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
         {/* Displays an alert if server response is bad */}
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
-          There was an error completing your sign up.
+          A valid email and password are required.
         </Alert>
         <h3>Log In</h3>
         <Form.Group className='mb-3'>
@@ -81,6 +90,11 @@ const LoginForm = () => {
           />
           {/* <Form.Control.Feedback type='invalid'>Password is required.</Form.Control.Feedback> */}
         </Form.Group>
+        {errorMessage && (
+          <div>
+            <p className="error-text">{errorMessage}</p>
+          </div>
+        )}
         <Button
 
           type='submit'
