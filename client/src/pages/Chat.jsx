@@ -10,18 +10,29 @@ import { CREATE_RESPONSE } from "../utils/mutations";
 
 const Chat = () => {
   const [chatOpen, setChatOpen] = useState(false);
+  const [responseOpen, setResponseOpen] = useState(false);
+  const [sendButton, setSendButton] = useState(false);
   const { loading, error, data } = useQuery(QUERY_CHAT);
+  
   useEffect(() => {
     console.log(data);
   }, [data]);
-  const [createChat, {newChatData}] = useMutation(CREATE_CHAT);
-  function createNewChat() {
 
-  }
+  const [createChat, {newChatData}] = useMutation(CREATE_CHAT);
+
   useEffect(() => {
     console.log(newChatData);
   }, [newChatData]);
-  // return <Layout grid>{JSON.stringify(data)}</Layout>;
+  function createNewChat() {
+
+  }
+  
+  const [createResponse, {newResponseData}] = useMutation(CREATE_RESPONSE);
+ 
+  useEffect(() => {
+    console.log(newResponseData);
+  }, [newResponseData]);
+  
 
   return (
     <>
@@ -34,10 +45,12 @@ const Chat = () => {
       </div>
 
       <div className="response-box"></div>
+      
       {!chatOpen ? (
         <button
           onClick={() => {
             setChatOpen(true);
+            setSendButton(true);
             createChat();
           }}
         >
@@ -50,14 +63,29 @@ const Chat = () => {
 
       {chatOpen ? (
         <div>
-          <h1>New Chat</h1>
+          <h3>Enter Coding Questions Below</h3>
           <input type="text" placeholder="Type your message..." />
-          {/* Button to send messages */}
-          <button onClick={async () => {}}>Send</button>
         </div>
       ) : (
         <></>
       )}
+
+      {!responseOpen ? (
+        <button onClick={() => {
+          setResponseOpen(true);
+          createResponse();
+        }}>Send</button>
+        ) : (
+          <></>
+        )}
+
+        {responseOpen ? (
+          <div>
+            <input type="text" placeholder="Answer Will Appear Here" />
+          </div>
+          ) : (
+            <></>
+          )}
     </>
   );
 };
