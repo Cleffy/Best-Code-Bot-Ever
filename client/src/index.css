@@ -37,6 +37,7 @@ button {
   font-weight: 600;
   background-color: var(--navBtnColor);
   cursor: pointer;
+  width: max-content;
   transition: background-color 0.25s;
   transition: outline 0.25s;
 }
@@ -53,6 +54,7 @@ h1 {
   margin: 0;
   color: var(--titleTxtColor);
   font-size: 64pt;
+  width: max-content;
 }
 
 h2 {
@@ -93,6 +95,10 @@ input {
   text-align: left;
 }
 #menuBtn {
+  display: flex;
+  align-items: center;
+}
+#layoutBody .nav{
   display: flex;
   align-items: center;
 }

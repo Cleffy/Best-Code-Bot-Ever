@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 const Menu = () => {
+  const navigate= useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -13,9 +14,9 @@ const Menu = () => {
       <button onClick={toggleDropdown}>Menu</button>
       {isDropdownOpen && (
         <div className="dropdown-content">
-          <Link to="/new-chat">New Chat</Link>
-          <Link to="/history">History</Link>
-          <Link to="/sign-out">Sign Out</Link>
+          <button onClick= {()=> {navigate('/')}}>Home</button>
+          <button onClick= {()=> {navigate('/chat')}}>Chat</button>
+          <button onClick= {() => {navigate('/history')}}>History</button>
         </div>
       )}
     </div>
