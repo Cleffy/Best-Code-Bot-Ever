@@ -85,7 +85,7 @@ const Chat = () => {
               borderRadius: "22px",
               padding: "10px",
               fontSize: "16px",
-              width: "100%",
+              width: "80%",
               minHeight: "256px",
               maxHeight: "512px"
             }}
