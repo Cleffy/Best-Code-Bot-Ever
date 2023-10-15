@@ -31,7 +31,7 @@ const resolvers = {
       return { token, user };
     },
     login: async (parent, { email, password }) => {
-      // Look up the user by the provided email address. Since the `email` field is unique, we know that only one person will exist with that email
+      // Looks up the user by the provided email address. Since the `email` field is unique, we know that only one person will exist with that email
       const user = await User.findOne({ email });
 
       // If there is no user with that email address, return an Authentication error stating so
@@ -50,7 +50,7 @@ const resolvers = {
       // If email and password are correct, sign user into the application with a JWT
       const token = signToken(user);
 
-      // Return an `Auth` object that consists of the signed token and user's information
+      // Returns an `Auth` object that consists of the signed token and user's information
       return { token, user };
     },
     createChat: async (parent, args, context) => {
@@ -61,14 +61,14 @@ const resolvers = {
           username: context.user.username
         })
 
-// then the new chat ID is stored in the users account
+// Then the new chat ID is stored in the users account
         const user = await User.findByIdAndUpdate(
           { _id: context.user._id },
           { $push: { history: chat._id } },
           { new: true }
         )
 
-        return user
+        return chat
 
       }
       throw AuthenticationError;
@@ -76,7 +76,7 @@ const resolvers = {
     createResponse: async (parent, args, context) => {
       if (context.user) {
         const openai =  new OpenAI({
-          apiKey: process.env.OPEN_AI_APIKEY, // defaults to process.env["OPENAI_API_KEY"]
+          apiKey: process.env.OPEN_AI_APIKEY, // Defaults to process.env["OPENAI_API_KEY"]
         });
         
 
@@ -92,8 +92,7 @@ const resolvers = {
         );
 
        
-
-        // send api call to chatgpt service, when the response is returned we will grab the response and update the chat again
+        // Sends api call to chatgpt service, when the response is returned we will grab the response and update the chat again
 
         const chatCompletion = await openai.chat.completions.create({
           messages: [{ role: 'user', content: args.responseText }],
