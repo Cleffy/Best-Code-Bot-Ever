@@ -49,8 +49,8 @@ function App() {
             <Route path="login" element={<Login />} />  
             <Route path="chat" element={<Chat />} />
             <Route path="history" element={<History />} />
+            <Route path="*" element={<FourOhFour />} />
           </Route>
-          <Route path="*" element={<FourOhFour />} />
         </Routes>
       </BrowserRouter>
     </ApolloProvider>
