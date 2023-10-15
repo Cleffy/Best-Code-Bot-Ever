@@ -1,3 +1,7 @@
+/**
+ * Simply two headings for a landing page.
+ * @returns Main section for home page
+ */
 function Home() {
     return (
         <main id="mainHome">

@@ -3,6 +3,11 @@ import logo from '../assets/NueralNetworkIcon.svg';
 import Auth from '../utils/auth';
 import Menu from './menu';
 
+/**
+ * Adds the header and navigation to most pages
+ * Determines what navigation is displayed based on if user is logged in
+ * @returns Main layout for most pages
+ */
 function MainLayout() {
   const navigate= useNavigate();
   return (

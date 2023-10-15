@@ -4,7 +4,12 @@ import Auth from '../utils/auth';
 import Menu from './menu';
 import backgroundImage from '../assets/HomeBackground.png';
 
-function MainLayout() {
+/**
+ * Adds the header, navigation, and background to homepage
+ * Determines what navigation is displayed based on if user is logged in
+ * @returns Home layout
+ */
+function HomeLayout() {
   const navigate= useNavigate();
   return (
     <div id="layoutBody" style={{
@@ -38,4 +43,4 @@ function MainLayout() {
   );
 }
 
-export default MainLayout;
+export default HomeLayout;
