@@ -23,7 +23,6 @@ function MainLayout() {
           {Auth.loggedIn() &&
             <div className='nav'>
               <Menu />
-              <button onClick= {Auth.logout} >Log Out</button> 
             </div>
           }
         </header>
