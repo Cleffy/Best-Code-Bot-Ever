@@ -8,14 +8,16 @@ function MainLayout() {
   return (
     <div id="layoutBody">
         <header>
-          <object style={{ width: '15%' }} type="image/svg+xml" data={logo}>
-            <img style={{ objectFit: 'contain' }} src={logo} alt="Nueral Network Icon" />
-          </object>
-          <h1>Code Bot</h1>
+          <div className='title'>
+            <object style={{ width: '25%' }} type="image/svg+xml" data={logo}>
+              <img style={{ objectFit: 'contain' }} src={logo} alt="Nueral Network Icon" />
+            </object>
+            <h1 style={{ width: '75%' }}>Code Bot</h1>
+          </div>
           {!Auth.loggedIn() &&
             <div className='nav'>
-              <button onClick= {()=> {navigate('/register')}}>Sign Up</button>
               <button onClick= {() => {navigate('/login')}}>Log In</button>
+              <button onClick= {()=> {navigate('/register')}}>Sign Up</button>
             </div>
           }
           {Auth.loggedIn() &&
