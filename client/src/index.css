@@ -143,14 +143,13 @@ a:hover {
 .spinner-container{
   display: flex;
   justify-content: center;
+  align-items: center;
   padding: 20px;
 }
 .spinner-container p {
   margin-left: 10px;
   color: #fceee7;
   font-size: 25px;
-  
-
 }
 
 .load-spinner {
