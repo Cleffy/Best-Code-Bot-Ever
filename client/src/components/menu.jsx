@@ -2,6 +2,13 @@ import { useState } from 'react';
 import { Link } from "react-router-dom";
 import Auth from '../utils/auth';
 
+/**
+ * Home - return to homepage
+ * Chat - go to chat page
+ * History - go to history page
+ * Sign Out - sign out of account and return to homepage
+ * @returns Menu dropdown for navigation
+ */
 const Menu = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 

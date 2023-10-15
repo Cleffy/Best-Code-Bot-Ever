@@ -37,6 +37,18 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+/**
+ * HomeLayout for home page
+ * Route to Home page
+ * 
+ * MainLayout for all other routes
+ * Route to Register page
+ * Route to Login page
+ * Route to Chat page
+ * Route to History page
+ * Route to 404 page
+ * @returns App with routes to all pages
+ */
 function App() {
   return (
     <ApolloProvider client={client}>

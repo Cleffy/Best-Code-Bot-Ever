@@ -1,5 +1,5 @@
 :root {
-  --mainBGColor: #232E54;
+  --mainBGColor: rgb(18, 23, 36);
   --navBtnColor: #41aaa9;
   --navBtnHoverColor: #21baba;
   --titleTxtColor: #fceee7;
@@ -58,7 +58,6 @@ h1 {
   margin: 0;
   color: var(--titleTxtColor);
   font-size: 48pt;
-  width: max-content;
 }
 
 h2 {
@@ -130,22 +129,24 @@ input {
   font-size: 16pt;
   padding: 8px;
 }
-
 .dropdown-content a:hover {
   color: var(--titleTxtColor);
   background-color: var(--navBtnColor);
 }
+
+/* Home settings */
+
 /* Responsive UI */
 
 @media only screen and (max-width: 786px) {
   #layoutBody header {
-    flex-flow: column wrap;
+    flex-flow: column;
   }
   #layoutBody .title{
     width: 100%;
   }
   #layoutBody .nav{
-    flex-flow: column wrap;
+    flex-flow: column;
     width: 100%;
   }
   .dropdown-content{
