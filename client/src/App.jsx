@@ -15,8 +15,6 @@ import Chat from './pages/Chat';
 import History from './pages/History';
 import FourOhFour from './pages/404';
 
-import './App.css';
-
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
