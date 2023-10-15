@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 28.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 256 256" style="enable-background:new 0 0 256 256;" xml:space="preserve">
+	<style type="text/css">
+		.st0{
+			fill:none;
+			stroke:#4e4e4e;
+			stroke-miterlimit:10;
+			transition: all 0.5s ease-in-out;
+		}
+		.st1{
+			fill:rgba(255,255,255,0);
+			stroke:#4e4e4e;
+			stroke-miterlimit:10;
+			transition: all 0.5s ease-in-out;
+		}
+	</style>
+	<radialGradient id="ThinkingGradient">
+		<stop offset="0%" stop-color="#ffe600" />
+		<stop id="GradientOutside" offset="100%" stop-color="rgba(255,255,255,1)" />		
+	</radialGradient>
+	<filter id="softGlow">
+		<feGaussianBlur stdDeviation="0.5" />
+	</filter>
+	<g id="Shape">
+		<line id="Line0-3-2" class="st0" x1="146" y1="196" x2="206" y2="160"/>
+		<line id="Line0-3-1" class="st0" x1="206" y1="96" x2="146" y2="196"/>
+		<line id="Line0-2-2" class="st0" x1="206" y1="160" x2="146" y2="128"/>
+		<line id="Line0-2-1" class="st0" x1="146" y1="128" x2="206" y2="96"/>
+		<line id="Line0-1-2" class="st0" x1="206" y1="160" x2="146" y2="64"/>
+		<line id="Line0-1-1" class="st0" x1="146" y1="64" x2="206" y2="96"/>
+		<line id="Line2-3-0" class="st0" x1="50" y1="160" x2="110" y2="196"/>
+		<line id="Line2-2-0" class="st0" x1="50" y1="160" x2="110" y2="128"/>
+		<line id="Line2-1-0" class="st0" x1="50" y1="160" x2="110" y2="64"/>
+		<line id="Line1-3-0" class="st0" x1="50" y1="96" x2="110" y2="196"/>
+		<line id="Line1-2-0" class="st0" x1="50" y1="96" x2="110" y2="128"/>
+		<line id="Line1-1-0" class="st0" x1="50" y1="96" x2="110" y2="64"/>
+		<circle id="Circle3-2" class="st1" cx="224" cy="160" r="18"/>
+		<circle id="Circle3-1" class="st1" cx="224" cy="96" r="18"/>
+		<circle id="Circle2-3" class="st1" cx="128" cy="196" r="18"/>
+		<circle id="Circle2-2" class="st1" cx="128" cy="128" r="18"/>
+		<circle id="Circle2-1" class="st1" cx="128" cy="64" r="18"/>
+		<circle id="Circle1-2" class="st1" cx="32" cy="160" r="18"/>
+		<circle id="Circle1-1" class="st1" cx="32" cy="96" r="18"/>
+	</g>
+	<script>
+		const circle11 = document.getElementById('Circle1-1');
+		const circle12 = document.getElementById('Circle1-2');
+		const circle21 = document.getElementById('Circle2-1');
+		const circle22 = document.getElementById('Circle2-2');
+		const circle23 = document.getElementById('Circle2-3');
+		const circle31 = document.getElementById('Circle3-1');
+		const circle32 = document.getElementById('Circle3-2');
+		const line110 = document.getElementById('Line1-1-0');
+		const line120 = document.getElementById('Line1-2-0');
+		const line130 = document.getElementById('Line1-3-0');
+		const line210 = document.getElementById('Line2-1-0');
+		const line220 = document.getElementById('Line2-2-0');
+		const line230 = document.getElementById('Line2-3-0');
+		const line011 = document.getElementById('Line0-1-1');
+		const line012 = document.getElementById('Line0-1-2');
+		const line021 = document.getElementById('Line0-2-1');
+		const line022 = document.getElementById('Line0-2-2');
+		const line031 = document.getElementById('Line0-3-1');
+		const line032 = document.getElementById('Line0-3-2');
+
+		function getRandomInt(max) {
+			return Math.floor(Math.random() * Math.floor(max)) + 1;
+		}
+		function fillCircle(circle, color){
+			let gradientColor = document.getElementById('GradientOutside');
+			gradientColor.setAttribute('stop-color', color);
+			circle.style.fill = 'url(#ThinkingGradient)';
+			circle.style.stroke = color;
+			circle.style.filter = 'url(#softGlow)';
+			setTimeout(function () {
+				circle.style.fill = 'rgba(255,255,255,0)';
+				circle.style.stroke = '#4e4e4e';
+				circle.style.filter = 'none';
+			}, 500);
+		}
+		function fillLine(line, color){
+			line.style.stroke = color;
+			line.style.filter = 'url(#softGlow)';
+			setTimeout(function () {
+				line.style.stroke = '#4e4e4e';
+				line.style.filter = 'none';
+			}, 500);
+		}
+		function getColor(){
+			return '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6);
+		}
+		function animatePathOne(){
+			color = getColor();
+			switch(getRandomInt(2)){
+				case 1:
+					fillCircle(circle11, color);
+					setTimeout(function () {
+						animatePathTwo(1, color);
+					}, 250);
+					break;
+				case 2:
+					fillCircle(circle12, color);
+					setTimeout(function () {
+						animatePathTwo(2, color);
+					}, 250);
+					break;
+			}
+		}
+		function animatePathTwo(path, color){
+			if(path == 1){
+				switch(getRandomInt(3)){
+					case 1:
+						fillLine(line110, color);
+						setTimeout(function () {
+							fillCircle(circle21, color);
+							animatePathThree(1, color);
+						}, 250);
+						break;
+					case 2:
+						fillLine(line120, color);
+						setTimeout(function () {
+							fillCircle(circle22, color);
+							animatePathThree(2, color);
+						}, 250);
+						break;
+					case 3:
+						fillLine(line130, color);
+						setTimeout(function () {
+							fillCircle(circle23, color);
+							animatePathThree(3, color);
+						}, 250);
+						break;
+				}
+			}
+			if(path == 2){
+				switch(getRandomInt(3, color)){
+					case 1:
+						fillLine(line210, color);
+						setTimeout(function () {
+							fillCircle(circle21, color);
+							animatePathThree(1, color);
+						}, 250);
+						break;
+					case 2:
+						fillLine(line220, color);
+						setTimeout(function () {
+							fillCircle(circle22, color);
+							animatePathThree(2, color);
+						}, 250);
+						break;
+					case 3:
+						fillLine(line230, color);
+						setTimeout(function () {
+							fillCircle(circle23, color);
+							animatePathThree(3, color);
+						}, 250);
+						break;
+				}
+			}
+		}
+		function animatePathThree(path, color){
+			if(path == 1){
+				switch(getRandomInt(2)){
+					case 1:
+						fillLine(line011, color);
+						setTimeout(function () {
+							fillCircle(circle31, color);
+						}, 250);
+						break;
+					case 2:
+						fillLine(line012, color);
+						setTimeout(function () {
+							fillCircle(circle32, color);
+						}, 250);
+				}
+			}
+			if(path == 2){
+				switch(getRandomInt(2)){
+					case 1:
+						fillLine(line021, color);
+						setTimeout(function () {
+							fillCircle(circle31, color);
+						}, 250);
+						break;
+					case 2:
+						fillLine(line022, color);
+						setTimeout(function () {
+							fillCircle(circle32, color);
+						}, 250);
+				}
+			}
+			if(path == 3){
+				switch(getRandomInt(2)){
+					case 1:
+						fillLine(line031, color);
+						setTimeout(function () {
+							fillCircle(circle31, color);
+						}, 250);
+						break;
+					case 2:
+						fillLine(line032, color);
+						setTimeout(function () {
+							fillCircle(circle32, color);
+						}, 250);
+				}
+			}
+		}
+		setInterval(animatePathOne, 1500);
+	</script>
+</svg>
