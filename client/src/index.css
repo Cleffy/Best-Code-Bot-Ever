@@ -100,11 +100,17 @@ input {
 /* Responsive UI */
 
 .userInput{
-  background-color: red;
+  background-color:#fceee7;
+  border-radius: 22px;
+  padding:10px;
+  margin: 10px;
 }
 
 .chatBotResponse{
   background-color: white;
+  border-radius: 22px;
+  padding:10px;
+  margin: 10px;
 }
 
 a {
