@@ -55,6 +55,7 @@ const Chat = () => {
     const updatedChat = { ...chatData };
     updatedChat.createChat.responses = [...data.createResponse.responses];
     setChatData(updatedChat);
+    setCurrentQuestion('Type your message...');
     console.log("response: ", data);
   };
 
@@ -77,11 +78,17 @@ const Chat = () => {
       {chatOpen ? (
         <div>
           <h2>New Chat</h2>
-
-          <input
-            type="text"
+          <textarea
             placeholder="Type your message..."
             onChange={handleInputChange}
+            style={{
+              borderRadius: "22px",
+              padding: "10px",
+              fontSize: "16px",
+              width: "100%",
+              minHeight: "256px",
+              maxHeight: "512px"
+            }}
           />
           {/* Button to send messages */}
           <button onClick={handleQuestionSubmit}>Send</button>
