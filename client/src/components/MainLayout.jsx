@@ -12,13 +12,13 @@ function MainLayout() {
             <img style={{ objectFit: 'contain' }} src={logo} alt="Nueral Network Icon" />
           </object>
           <h1>Code Bot</h1>
-          {Auth.loggedIn() &&
+          {!Auth.loggedIn() &&
             <div className='nav'>
               <button onClick= {()=> {navigate('/register')}}>Sign Up</button>
               <button onClick= {() => {navigate('/login')}}>Log In</button>
             </div>
           }
-          {!Auth.loggedIn() &&
+          {Auth.loggedIn() &&
             <div className='nav'>
               <Menu />
               <button onClick= {Auth.logout} >Log Out</button> 
