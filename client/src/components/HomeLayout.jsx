@@ -2,11 +2,18 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import logo from '../assets/NueralNetworkIcon.svg';
 import Auth from '../utils/auth';
 import Menu from './menu';
+import backgroundImage from '../assets/HomeBackground.png';
 
 function MainLayout() {
   const navigate= useNavigate();
   return (
-    <div id="layoutBody">
+    <div id="layoutBody" style={{
+        height: '100vh',
+        width: '100vw',
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: '100% auto',
+        backgroundRepeat: 'no-repeat',
+    }}>
         <header>
           <div className='title'>
             <object style={{ width: '25%' }} type="image/svg+xml" data={logo}>
