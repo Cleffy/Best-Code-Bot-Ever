@@ -50,7 +50,14 @@ function App() {
           </Route>
           <Route element={<UserLayout />}>
             <Route path="register" element={<Register />} />
-            <Route path="login" element={<Login />} />
+            
+            <Route path="login" element={<Login />} />            
+            {/* <Route path="chat" element={<Chat />} />*/}
+            <Route path="history" element={<History />} /> 
+            <Route
+              path="history"
+              element={<History />}
+            />
           </Route>
           <Route element={<MainLayout />}>    
             <Route path="chat" element={<Chat />} />
