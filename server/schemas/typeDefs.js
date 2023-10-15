@@ -16,6 +16,7 @@ const typeDefs = gql`
    }
 
    type Response {
+    _id: ID
     responseText: String
     username: String
     createdOn: String
