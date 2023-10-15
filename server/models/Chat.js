@@ -6,7 +6,7 @@ const chatSchema = new Schema({
 
     username: {
         type: String ,
-        required: true// We are assuming that the reply is returned as a string by the API.
+        required: true
     },
     responses: [responseSchema],
     createdOn:
@@ -19,7 +19,7 @@ const chatSchema = new Schema({
 },
     {
         toJSON: {
-            getters: true // This allows us to use the getter method on line 20 format the date.
+            getters: true 
         },
         id: false
     })
