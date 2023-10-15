@@ -15,6 +15,9 @@ function HomeLayout() {
     <div id="layoutBody" style={{
         height: '100vh',
         width: '100vw',
+        maxHeight: '100%',
+        maxWidth: '100%',
+        margin: '0',
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: '100% auto',
         backgroundRepeat: 'no-repeat',

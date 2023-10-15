@@ -18,9 +18,8 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
-  max-width: 1280px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 body {
@@ -104,7 +103,7 @@ input {
 }
 #layoutBody .nav{
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   width: 40%;
 }
