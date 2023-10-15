@@ -99,6 +99,13 @@ input {
 
 /* Responsive UI */
 
+.userInput{
+  background-color: red;
+}
+
+.chatBotResponse{
+  background-color: white;
+}
 
 a {
   font-weight: 500;
