@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import Auth from '../utils/auth';
 
 const Menu = () => {
   const navigate= useNavigate();
@@ -17,6 +18,7 @@ const Menu = () => {
           <button onClick= {()=> {navigate('/')}}>Home</button>
           <button onClick= {()=> {navigate('/chat')}}>Chat</button>
           <button onClick= {() => {navigate('/history')}}>History</button>
+          <button onClick= {Auth.logout} >Log Out</button> 
         </div>
       )}
     </div>
