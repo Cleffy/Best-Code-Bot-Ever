@@ -61,6 +61,7 @@ function App() {
             <Route path="register" element={<Register />} />
             <Route path="login" element={<Login />} />  
             <Route path="chat" element={<Chat />} />
+            <Route path="chat/:chatIndex" element={<Chat />} />
             <Route path="history" element={<History />} />
             <Route path="*" element={<FourOhFour />} />
           </Route>
