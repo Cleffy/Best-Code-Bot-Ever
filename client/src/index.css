@@ -1,5 +1,5 @@
 :root {
-  --mainBGColor: #232E54;
+  --mainBGColor: rgb(18, 23, 36);
   --navBtnColor: #41aaa9;
   --navBtnHoverColor: #21baba;
   --titleTxtColor: #fceee7;
@@ -18,7 +18,9 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
-  
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
 }
 body {
   margin: 0;
@@ -37,8 +39,10 @@ button {
   font-weight: 600;
   background-color: var(--navBtnColor);
   cursor: pointer;
+  width: max-content;
   transition: background-color 0.25s;
   transition: outline 0.25s;
+  margin: 2px;
 }
 button:hover {
   background-color: var(--navBtnHoverColor);
@@ -52,7 +56,7 @@ button:focus-visible {
 h1 {
   margin: 0;
   color: var(--titleTxtColor);
-  font-size: 64pt;
+  font-size: 48pt;
 }
 
 h2 {
@@ -77,34 +81,93 @@ input {
   border-radius: 22px;
   border: 1px solid transparent;
   padding: 12px 18px;
+  margin: 4px;
   font-size: 16pt;
 }
 
 /* Layout settings */
 #layoutBody header {
   display: flex;
+  flex-flow: row wrap;
   left: 0;
   top: 0;
   width: 100%;
-  justify-content: space-between;
-}
-#layoutBody h1 {
-  width: 65%;
-  text-align: left;
-}
-#menuBtn {
-  display: flex;
+  justify-content: space-evenly;
   align-items: center;
 }
+#layoutBody .title{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+}
+#layoutBody .nav{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+}
+
+/* Menu settings */
+.dropdown-content {
+  display: flex;
+  flex-flow: column wrap;
+  position: absolute;
+  text-align: left;
+  z-index: 1;
+  justify-content: space-between;
+}
+.dropdown-content a {
+  color: var(--bodyTextColor);
+  text-decoration: none;
+  background-color: var(--fieldBGColor);
+  min-width: 128px;
+  margin: 4px;
+  border-radius: 22px;
+  display: block;
+  font-size: 16pt;
+  padding: 8px;
+}
+.dropdown-content a:hover {
+  color: var(--titleTxtColor);
+  background-color: var(--navBtnColor);
+}
+
+/* Home settings */
 
 /* Responsive UI */
 
+@media only screen and (max-width: 786px) {
+  #layoutBody header {
+    flex-flow: column;
+  }
+  #layoutBody .title{
+    width: 100%;
+  }
+  #layoutBody .nav{
+    flex-flow: column;
+    width: 100%;
+  }
+  .dropdown-content{
+    flex-flow: row wrap;
+    position: relative;
+    text-align: center;
+  }
+}
+
 .userInput{
-  background-color: red;
+  background-color:#fceee7;
+  border-radius: 22px;
+  padding:10px;
+  margin: 10px;
 }
 
 .chatBotResponse{
   background-color: white;
+  border-radius: 22px;
+  padding:10px;
+  margin: 10px;
 }
 
 a {
@@ -129,3 +192,36 @@ a:hover {
   }
 }
 */
+
+/* Spinner animation */
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.spinner-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.spinner-container p {
+  margin-left: 10px;
+  color: #fceee7;
+  font-size: 25px;
+}
+
+.load-spinner {
+  width: 25px;
+  height: 25px;
+  /* border and bordertop take care of the color of the spinner */
+  border: 10px solid var(--titleTxtColor);
+  border-top: 10px solid black;
+  border-radius: 50%;
+  animation: spinner 1.5s linear infinite;
+}
+

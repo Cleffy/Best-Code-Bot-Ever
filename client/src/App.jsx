@@ -7,17 +7,14 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import HomeLayout from './components/HomeLayout';
-import UserLayout from './components/UserLayout';
 import MainLayout from './components/MainLayout';
+import HomeLayout from './components/HomeLayout';
 import Home from './pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Chat from './pages/Chat';
 import History from './pages/History';
 import FourOhFour from './pages/404';
-
-import './App.css';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -40,6 +37,18 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+/**
+ * HomeLayout for home page
+ * Route to Home page
+ * 
+ * MainLayout for all other routes
+ * Route to Register page
+ * Route to Login page
+ * Route to Chat page
+ * Route to History page
+ * Route to 404 page
+ * @returns App with routes to all pages
+ */
 function App() {
   return (
     <ApolloProvider client={client}>
@@ -48,22 +57,13 @@ function App() {
           <Route element={<HomeLayout />}>
             <Route path="/" element={<Home />} />
           </Route>
-          <Route element={<UserLayout />}>
+          <Route element={<MainLayout />}>
             <Route path="register" element={<Register />} />
-            
-            <Route path="login" element={<Login />} />            
-            {/* <Route path="chat" element={<Chat />} />*/}
-            <Route path="history" element={<History />} /> 
-            <Route
-              path="history"
-              element={<History />}
-            />
-          </Route>
-          <Route element={<MainLayout />}>    
+            <Route path="login" element={<Login />} />  
             <Route path="chat" element={<Chat />} />
             <Route path="history" element={<History />} />
+            <Route path="*" element={<FourOhFour />} />
           </Route>
-          <Route path="*" element={<FourOhFour />} />
         </Routes>
       </BrowserRouter>
     </ApolloProvider>

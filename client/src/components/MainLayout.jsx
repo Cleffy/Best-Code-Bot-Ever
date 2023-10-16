@@ -1,11 +1,35 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
+import logo from '../assets/NueralNetworkIcon.svg';
+import Auth from '../utils/auth';
+import Menu from './menu';
 
+/**
+ * Adds the header and navigation to most pages
+ * Determines what navigation is displayed based on if user is logged in
+ * @returns Main layout for most pages
+ */
 function MainLayout() {
+  const navigate= useNavigate();
   return (
     <div id="layoutBody">
         <header>
-            {/*<img src="" alt="Code Bot Logo" />*/}
-            <h1>Code Bot</h1>
+          <div className='title'>
+            <object style={{ width: '25%' }} type="image/svg+xml" data={logo}>
+              <img style={{ objectFit: 'contain' }} src={logo} alt="Nueral Network Icon" />
+            </object>
+            <h1 style={{ width: '75%' }}>Code Bot</h1>
+          </div>
+          {!Auth.loggedIn() &&
+            <div className='nav'>
+              <button onClick= {() => {navigate('/login')}}>Log In</button>
+              <button onClick= {()=> {navigate('/register')}}>Sign Up</button>
+            </div>
+          }
+          {Auth.loggedIn() &&
+            <div className='nav'>
+              <Menu />
+            </div>
+          }
         </header>
         <Outlet />
     </div>
