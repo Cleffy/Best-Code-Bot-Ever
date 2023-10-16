@@ -6,14 +6,21 @@ import { CREATE_CHAT } from "../utils/mutations";
 import { CREATE_RESPONSE } from "../utils/mutations";
 import History from "./History";
 import Spinner from "../components/Spinner";
+import { useParams } from "react-router-dom";
 
 const Chat = () => {
+  const {chatIndex} = useParams()
+ 
+
+  
   const [chatOpen, setChatOpen] = useState(false);
 
   const {data} = useQuery(QUERY_USER);
 
   const userData = data?.user || {}
   console.log(userData.username);
+
+
 
   const [createChat, { newChatError }] = useMutation(CREATE_CHAT, {
     onCompleted: (data) => {
@@ -24,18 +31,29 @@ const Chat = () => {
   const [createResponse, { error, loading }] =
     useMutation(CREATE_RESPONSE);
   const [chatData, setChatData] = useState({});
+  useEffect(() => {
+    if(typeof(chatIndex) === 'string' && userData){
+      
+      // setChatOpen(true)
+      try{
+        console.log(userData.history[0])
+        setChatData({createChat: userData.history[parseInt(chatIndex)]})
+        setChatOpen(true)
+      }catch(err){
+        console.log(err)
+      }
+      
+    }else{
+      setChatOpen(false)
+    }
+  }, [chatIndex, userData])
   const [currentQuestion, setCurrentQuestion] = useState("");
-
-  // useEffect(() => {
-  //   if (chatData) {
-  //     console.log(chatData);
-  //   }
-  // }, [chatData]);
 
   const handleNewChat = async () => {
     try {
       const { data } = await createChat();
       setChatData(data);
+      console.log(data)
     } catch (err) {
       console.log(err);
     }

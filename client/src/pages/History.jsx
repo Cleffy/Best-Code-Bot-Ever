@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     Container,
     Col,
@@ -12,40 +12,21 @@ import { useQuery } from '@apollo/client';
 import { QUERY_CHAT,QUERY_USER } from '../utils/queries';
 
 const History = () => {
-    //const {loading,data } = useQuery(QUERY_USER)
-
-    //const userData = data?.user || {}
-    //console.log(userData)
-
-    const userData =  {
-            _id: "652b01a82737b3119b174929",
-            username: "eric",
-            history: [
-                {
-                    _id:"652b09612fdf8b8dd66e5268",
-                    responses: [
-                        {
-                            responseText: "hi also",
-                            username:"eric"
-                        }
-                    ],
-                    username: "eric"
-                },
-              
-            ]
+    const [chats, setChats] = useState([])
+    const {loading,data } = useQuery(QUERY_USER, {
+        fetchPolicy: 'network-only',
+        onCompleted: (data) => {
+            setChats(data.user.history.filter((chat) => {
+                return chat.responses.length > 0
+            }))
         }
-    
-     userData.history.forEach(chats => {
-       console.log(chats._id)
-   const { data } = useQuery(QUERY_CHAT,{
-        variables: {_id: chats._id }
     })
-   const userChats = data?.chat || {}
-    console.log(userChats)
-})
-    ; // no idea if this is going to work
-    //console.log('data: ', data);
-   // console.log('userChats: ', userChats);
+
+    console.log(chats)
+
+    const handleChatClick = (index) => {
+        window.location.replace(`/chat/${index}`)
+    }
 
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -53,9 +34,6 @@ const History = () => {
         return false;
     }
 
-    // if (loading) {
-    //     return <div>Loading...</div>;
-    // }
 
     return (
         <Container>
@@ -64,37 +42,15 @@ const History = () => {
                     <Card>
                         <Card.Body>
                             <Card.Title>History</Card.Title>
-                            <Card.Text>
-                                
-                                <Button>
-                                    Chat 1
-                                </Button>
-                            </Card.Text>
-                            <Card.Text>
-                                <Button>
-                                    Chat 2
-                                </Button>
-                            </Card.Text>
-                            <Card.Text>
-                                <Button>
-                                    Chat 3
-                                </Button>
-                            </Card.Text>
-                            <Card.Text>
-                                <Button>
-                                    Chat 4
-                                </Button>
-                            </Card.Text>
-                            <Card.Text>
-                                <Button>
-                                    Chat 5
-                                </Button>
-                            </Card.Text>
-                            <Card.Text>
-                                <Button>
-                                    Chat 6
-                                </Button>
-                            </Card.Text>
+                            {chats.map((chat, index) => {
+                                return (
+                                    <Card.Text key={index}>
+                                        <Button onClick={()=>handleChatClick(index)}>{chat.createdOn}</Button>
+                                     </Card.Text>
+                                )
+                            })} 
+                           
+                            
                         </Card.Body>
                     </Card>
                 </Col>
