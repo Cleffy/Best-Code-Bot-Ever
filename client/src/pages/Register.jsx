@@ -65,7 +65,7 @@ const RegisterForm = () => {
       {/* Necessary for validation functionality above */}
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
         {/* Displays an alert if server response is bad */}
-        <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+        <Alert onClose={() => setShowAlert(false)} show={showAlert} style={{"color":"white"}}>
           A valid username, email and password are required.
         </Alert>
         <h3>Register</h3>
