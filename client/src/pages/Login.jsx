@@ -61,7 +61,7 @@ const LoginForm = () => {
       {/* Necessary for validation functionality above */}
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
         {/* Displays an alert if server response is bad */}
-        <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+        <Alert onClose={() => setShowAlert(false)} show={showAlert} style={{"color":"white"}}>
           A valid email and password are required.
         </Alert>
         <h3>Log In</h3>
@@ -75,7 +75,7 @@ const LoginForm = () => {
             value={userFormData.email}
             required
           />
-          <Form.Control.Feedback type='invalid'>Email is required.</Form.Control.Feedback>
+      
         </Form.Group>
 
         <Form.Group className='mb-3'>
@@ -88,7 +88,7 @@ const LoginForm = () => {
             value={userFormData.password}
             required
           />
-          {/* <Form.Control.Feedback type='invalid'>Password is required.</Form.Control.Feedback> */}
+       
         </Form.Group>
         {errorMessage && (
           <div>
