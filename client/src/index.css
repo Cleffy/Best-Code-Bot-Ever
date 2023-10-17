@@ -174,16 +174,17 @@ textarea, input{
   border-style: none double none double;
   border-radius: 0.5vw;
   border-width: 0 0.25vw 0 0.25vw;
+  border-color: var(--dkBkgTextColor);
   padding: 0.5vw;
   margin: 0.5vw;
   max-width: 50vw;
 }
 
 .userInput{
-  border-color: rgba(0, 255, 251, 0.2);
+  background-color: rgba(65, 170, 169, 0.2);
 }
 .chatBotResponse{
-  background-color: rgba(0, 76, 255, 0.2);
+  background-color: rgba(65, 102, 170, 0.2);
 }
 
 /* Responsive UI */

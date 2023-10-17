@@ -134,19 +134,20 @@ const Chat = () => {
 
                       <p
                       style={{
-                        color: "Black",
+                        color: "white",
                         fontWeight: "bold",
                         fontSize: "calc(6pt + 1vw)",
                         backgroundColor: "#41aaa9",
                         borderRadius: "22px",
-                        padding: "4px"
+                        padding: "1vw",
+                        minWidth: "fit-content"
                       }}
                       > {response.username  === 'Code-Bot' ? "Code-E : " : `${userData.username}: `}</p>
                       <p
                       style={{
                         padding: "4px",
                         textAlign: "left",
-                        color:"green"
+                        color:"white"
                       }}
                       >{response.responseText}</p>
 
