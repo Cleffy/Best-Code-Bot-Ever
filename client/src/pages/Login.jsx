@@ -57,7 +57,7 @@ const LoginForm = () => {
   };
 
   return (
-    <>
+    <section className="formGroup">
       {/* Necessary for validation functionality above */}
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
         {/* Displays an alert if server response is bad */}
@@ -102,7 +102,7 @@ const LoginForm = () => {
           Submit
         </Button>
       </Form>
-    </>
+    </section>
   );
 };
 

@@ -4,21 +4,14 @@
  */
 function Home() {
     return (
-        <main style={{
+        <section style={{
             display: "block", 
             width: "40%", 
             minWidth: "256px", 
             margin: "0 auto",
             lineHeight: "0.9"
             }} id="mainHome">
-            <h1 style={{
-                fontFamily: "kallisto, sans-serif", 
-                fontWeight: "900", 
-                fontStyle: "italic", 
-                fontSize: "6vw", 
-                margin: "0", 
-                padding: "0"
-                }}>Code-E</h1>
+            <h1>Code-E</h1>
 
             <h2 style={{
                 fontFamily: "kallisto, sans-serif", 
@@ -34,7 +27,7 @@ function Home() {
                 margin: "0", 
                 padding: "2.15vw"
                 }}>SIMPLIFY YOUR CODING JOURNEY</h2> 
-        </main>
+        </section>
     );
 }
 
