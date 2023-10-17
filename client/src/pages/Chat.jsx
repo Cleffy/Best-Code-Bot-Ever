@@ -9,15 +9,13 @@ import Spinner from "../components/Spinner";
 import { useParams } from "react-router-dom";
 
 const Chat = () => {
-  const { chatIndex } = useParams()
+  const { chatIndex } = useParams();
   const [chatOpen, setChatOpen] = useState(false);
 
   const { data } = useQuery(QUERY_USER);
 
-  const userData = data?.user || {}
+  const userData = data?.user || {};
   console.log(userData.username);
-
-
 
   const [createChat, { newChatError }] = useMutation(CREATE_CHAT, {
     onCompleted: (data) => {
@@ -25,34 +23,30 @@ const Chat = () => {
       setChatOpen(true); // Set `chatOpen` to `true` after the chat is created
     },
   });
-  const [createResponse, { error, loading }] =
-    useMutation(CREATE_RESPONSE);
+  const [createResponse, { error, loading }] = useMutation(CREATE_RESPONSE);
   const [chatData, setChatData] = useState({});
 
   useEffect(() => {
-    if (typeof (chatIndex) === 'string' && userData) {
-
+    if (typeof chatIndex === "string" && userData) {
       // setChatOpen(true)
       try {
-
-        console.log(userData.history[0])
-        setChatData({ createChat: userData.history[parseInt(chatIndex)] })
-        setChatOpen(true)
+        console.log(userData.history[0]);
+        setChatData({ createChat: userData.history[parseInt(chatIndex)] });
+        setChatOpen(true);
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
-
     } else {
-      setChatOpen(false)
+      setChatOpen(false);
     }
-  }, [chatIndex, userData])
+  }, [chatIndex, userData]);
   const [currentQuestion, setCurrentQuestion] = useState("");
 
   const handleNewChat = async () => {
     try {
       const { data } = await createChat();
       setChatData(data);
-      console.log(data)
+      console.log(data);
     } catch (err) {
       console.log(err);
     }
@@ -74,7 +68,7 @@ const Chat = () => {
     const updatedChat = { ...chatData };
     updatedChat.createChat.responses = [...data.createResponse.responses];
     setChatData(updatedChat);
-    setCurrentQuestion('Type your message...');
+    setCurrentQuestion("Type your message...");
     console.log("response: ", data);
   };
 
@@ -83,10 +77,10 @@ const Chat = () => {
       e.preventDefault();
       handleQuestionSubmit(e);
     }
-  }
+  };
 
   return (
-    <section className='chatGroup'>
+    <section className="chatGroup">
       <div className="response-box"></div>
       {!chatOpen ? (
         <button
@@ -115,45 +109,58 @@ const Chat = () => {
                 maxWidth: "60vw",
                 minHeight: "10vw",
                 maxHeight: "20vw",
-                outline: "none"
+                outline: "none",
               }}
             />
             {/* Button to send messages */}
-            <button className="chatSubmit" type="submit">Send</button>
+            <button className="chatSubmit" type="submit">
+              Send
+            </button>
           </form>
           <>
-            {loading ? <Spinner /> : (
+            {loading ? (
+              <Spinner />
+            ) : (
               <div>
-                {chatData.createChat.responses.toReversed().map((response, index) => {
-                  console.log(response);
-                  return (
-                    <div
-                      key={index}
-                      className={index % 2 === 0 ? "userInput" : "chatBotResponse"}
-                    >
-
-                      <p
-                      style={{
-                        color: "white",
-                        fontWeight: "bold",
-                        fontSize: "calc(6pt + 1vw)",
-                        backgroundColor: "#41aaa9",
-                        borderRadius: "22px",
-                        padding: "1vw",
-                        minWidth: "fit-content"
-                      }}
-                      > {response.username  === 'Code-Bot' ? "Code-E : " : `${userData.username}: `}</p>
-                      <p
-                      style={{
-                        padding: "4px",
-                        textAlign: "left",
-                        color:"white"
-                      }}
-                      >{response.responseText}</p>
-
-                    </div>
-                  );
-                })}
+                {chatData.createChat.responses
+                  .toReversed()
+                  .map((response, index) => {
+                    console.log(response);
+                    return (
+                      <div
+                        key={index}
+                        className={
+                          index % 2 === 0 ? "userInput" : "chatBotResponse"
+                        }
+                      >
+                        <p
+                          style={{
+                            color: "white",
+                            fontWeight: "bold",
+                            fontSize: "calc(6pt + 1vw)",
+                            backgroundColor: "#41aaa9",
+                            borderRadius: "22px",
+                            padding: "1vw",
+                            minWidth: "fit-content",
+                          }}
+                        >
+                          {" "}
+                          {response.username === "Code-Bot"
+                            ? "Code-E : "
+                            : `${userData.username}: `}
+                        </p>
+                        <p
+                          style={{
+                            padding: "4px",
+                            textAlign: "left",
+                            color: "white",
+                          }}
+                        >
+                          {response.responseText}
+                        </p>
+                      </div>
+                    );
+                  })}
               </div>
             )}
           </>

@@ -48,7 +48,7 @@ const History = () => {
                     <Card>
                         <Card.Body>
                             <Card.Title>History</Card.Title>
-                            {chats.map((chat, index) => {
+                            {chats.toReversed().map((chat, index) => {
                                 return (
                                     <Card.Text key={index}>
                                         <Button onClick={()=>handleChatClick(index)}>{chat.responses[0].responseText.split(" ").slice(0, 8).join(" ")}{chat.responses[0].responseText.split(" ").length >= 8 ? '...' : ''}
