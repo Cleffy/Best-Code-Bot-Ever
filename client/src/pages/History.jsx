@@ -22,8 +22,6 @@ const History = () => {
         }
     })
 
-    console.log(chats)
-
     const handleChatClick = (index) => {
         window.location.replace(`/chat/${index}`)
     }
@@ -33,7 +31,6 @@ const History = () => {
     if (!token) {
         return false;
     }
-
 
     return (
         <Container>
@@ -45,12 +42,14 @@ const History = () => {
                             {chats.map((chat, index) => {
                                 return (
                                     <Card.Text key={index}>
-                                        <Button onClick={()=>handleChatClick(index)}>{chat.createdOn}</Button>
-                                     </Card.Text>
+                                        <Button onClick={()=>handleChatClick(index)}>{chat.responses[0].responseText.split(" ").slice(0, 5).join(" ")}...
+                                        {/* this code assumes that at least the first 5 words are separated evenly (by 4 spaces). to start, the split() function converts the first responseText string (the initial question submitted by the user) into an array of substrings separated by spaces. then the slice() function truncates that array down to the first 5 entries (indices 0 through 4). finally, the join() function joins the individual elements of the array into a string, separating each element by the character specified by the parameter, which in this case is the space character (" "). in summary, this code takes the first 5 words of the first user query and uses the resulting string as the title for each history entry. */}
+                                        <br></br>
+                                        {/* put the date and time the chat was created on a different line from its title */}
+                                        {chat.createdOn}</Button>
+                                    </Card.Text>
                                 )
-                            })} 
-                           
-                            
+                            })}
                         </Card.Body>
                     </Card>
                 </Col>
