@@ -1,7 +1,6 @@
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, Link } from 'react-router-dom';
 import logo from '../assets/NueralNetworkIcon.svg';
 import Auth from '../utils/auth';
-import Menu from './menu';
 import backgroundImage from '../assets/HomeBackground.png';
 
 /**
@@ -10,9 +9,8 @@ import backgroundImage from '../assets/HomeBackground.png';
  * @returns Home layout
  */
 function HomeLayout() {
-  const navigate= useNavigate();
   return (
-    <div id="layoutBody" style={{
+    <div id="homeBody" style={{
         height: '100vh',
         width: '100vw',
         maxHeight: '100%',
@@ -21,23 +19,34 @@ function HomeLayout() {
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: '100% auto',
         backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center top',
     }}>
-        <header>
-          <div className='title'>
-            <object style={{ width: '25%' }} type="image/svg+xml" data={logo}>
+        <header style={{
+          height: '15vw',
+          display: 'flex',
+          flexFlow: 'row nowrap',
+          left: '0',
+          top: '0',
+          width: '90%',
+          margin: '0 auto',
+        }}>
+            <object style={{
+              width: '25%',
+              left: '10%'
+              }} type="image/svg+xml" data={logo}>
               <img style={{ objectFit: 'contain' }} src={logo} alt="Nueral Network Icon" />
             </object>
-            <h1 style={{ width: '75%' }}></h1>
-          </div>
           {!Auth.loggedIn() &&
-            <div className='nav'>
-              <button onClick= {() => {navigate('/login')}}>Log In</button>
-              <button onClick= {()=> {navigate('/register')}}>Sign Up</button>
+            <div className='homeNav'>
+              <Link to="/login">Log In</Link>
+              <Link to="/register">Register</Link>
             </div>
           }
           {Auth.loggedIn() &&
-            <div className='nav'>
-              <Menu />
+            <div className='homeNav'>
+              <Link to="/chat">Chat</Link>
+              <Link to="/history">History</Link>
+              <Link onClick= {() => { Auth.logout(); }} to="/">Sign Out</Link>
             </div>
           }
         </header>
