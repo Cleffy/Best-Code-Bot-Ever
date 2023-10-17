@@ -187,6 +187,18 @@ textarea, input{
   background-color: rgba(65, 102, 170, 0.2);
 }
 
+/* History settings / modifying bootstrap classes */
+.card-title{
+  color: var(--titleTxtColor);
+  font-size: calc(14pt + 4vw);
+}
+.card-text{
+  text-align: left;
+}
+.button{
+  font-size: calc(12pt + 1vw);
+}
+
 /* Responsive UI */
 
 @media only screen and (max-width: 786px) {
