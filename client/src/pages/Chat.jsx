@@ -9,13 +9,10 @@ import Spinner from "../components/Spinner";
 import { useParams } from "react-router-dom";
 
 const Chat = () => {
-  const {chatIndex} = useParams()
- 
-
-  
+  const { chatIndex } = useParams()
   const [chatOpen, setChatOpen] = useState(false);
 
-  const {data} = useQuery(QUERY_USER);
+  const { data } = useQuery(QUERY_USER);
 
   const userData = data?.user || {}
   console.log(userData.username);
@@ -31,19 +28,21 @@ const Chat = () => {
   const [createResponse, { error, loading }] =
     useMutation(CREATE_RESPONSE);
   const [chatData, setChatData] = useState({});
+
   useEffect(() => {
-    if(typeof(chatIndex) === 'string' && userData){
-      
+    if (typeof (chatIndex) === 'string' && userData) {
+
       // setChatOpen(true)
-      try{
+      try {
+
         console.log(userData.history[0])
-        setChatData({createChat: userData.history[parseInt(chatIndex)]})
+        setChatData({ createChat: userData.history[parseInt(chatIndex)] })
         setChatOpen(true)
-      }catch(err){
+      } catch (err) {
         console.log(err)
       }
-      
-    }else{
+
+    } else {
       setChatOpen(false)
     }
   }, [chatIndex, userData])
@@ -62,7 +61,9 @@ const Chat = () => {
     const newValue = event.target.value;
     setCurrentQuestion(newValue);
   };
-  const handleQuestionSubmit = async () => {
+
+  const handleQuestionSubmit = async (e) => {
+    e.preventDefault();
     console.log(chatData.createChat._id);
     const { data } = await createResponse({
       variables: {
@@ -76,6 +77,13 @@ const Chat = () => {
     setCurrentQuestion('Type your message...');
     console.log("response: ", data);
   };
+
+  const pressEnter = (e) => {
+    if (e.keyCode === 13 && e.shiftKey == false) {
+      e.preventDefault();
+      handleQuestionSubmit(e);
+    }
+  }
 
   return (
     <>
@@ -94,9 +102,10 @@ const Chat = () => {
       )}
 
       {chatOpen ? (
-        <div>
+        <form onSubmit={handleQuestionSubmit} onKeyDown={pressEnter}>
           <h2>New Chat</h2>
           <textarea
+
             placeholder="Type your message..."
             onChange={handleInputChange}
             style={{
@@ -109,10 +118,10 @@ const Chat = () => {
             }}
           />
           {/* Button to send messages */}
-          <button onClick={handleQuestionSubmit}>Send</button>
+          <button type="submit">Send</button>
           {loading ? <Spinner /> : (
             <div>
-              {chatData.createChat.responses.map((response, index) => {
+              {chatData.createChat.responses.toReversed().map((response, index) => {
                 console.log(response);
                 return (
                   <div
@@ -120,14 +129,14 @@ const Chat = () => {
                     className={index % 2 === 0 ? "userInput" : "chatBotResponse"}
                   >
 
-                    <p> {response.username  === 'Code-Bot' ? "Code Bot: " : `${userData.username}: `}{response.responseText}</p>
+                    <p> {response.username === 'Code-Bot' ? "Code Bot: " : `${userData.username}: `}{response.responseText}</p>
                   </div>
                 );
               })}
             </div>
 
           )}
-        </div>
+        </form>
       ) : (
         <></>
       )}
