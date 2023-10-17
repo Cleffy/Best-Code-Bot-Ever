@@ -129,9 +129,6 @@ const Chat = () => {
                     className={index % 2 === 0 ? "userInput" : "chatBotResponse"}
                   >
 
-
-                    <p> {response.username === 'Code-Bot' ? "Code Bot: " : `${userData.username}: `}{response.responseText}</p>
-
                     <p
                     style={{
                       float: "left",
