@@ -102,58 +102,62 @@ const Chat = () => {
       )}
 
       {chatOpen ? (
-        <form onSubmit={handleQuestionSubmit} onKeyDown={pressEnter}>
-          <textarea
-            placeholder="Type your message..."
-            onChange={handleInputChange}
-            style={{
-              borderRadius: "22px",
-              padding: "1vw",
-              fontSize: "calc(8pt + 2vw)",
-              minWidth: "40vw",
-              maxWidth: "60vw",
-              minHeight: "10vw",
-              maxHeight: "20vw",
-              outline: "none"
-            }}
-          />
-          {/* Button to send messages */}
-          <button className="chatSubmit" type="submit">Send</button>
-          {loading ? <Spinner /> : (
-            <div>
-              {chatData.createChat.responses.toReversed().map((response, index) => {
-                console.log(response);
-                return (
-                  <div
-                    key={index}
-                    className={index % 2 === 0 ? "userInput" : "chatBotResponse"}
-                  >
+        <>
+          <form onSubmit={handleQuestionSubmit} onKeyDown={pressEnter}>
+            <textarea
+              placeholder="Type your message..."
+              onChange={handleInputChange}
+              style={{
+                borderRadius: "22px",
+                padding: "1vw",
+                fontSize: "calc(6pt + 1vw)",
+                minWidth: "40vw",
+                maxWidth: "60vw",
+                minHeight: "10vw",
+                maxHeight: "20vw",
+                outline: "none"
+              }}
+            />
+            {/* Button to send messages */}
+            <button className="chatSubmit" type="submit">Send</button>
+          </form>
+          <>
+            {loading ? <Spinner /> : (
+              <div>
+                {chatData.createChat.responses.toReversed().map((response, index) => {
+                  console.log(response);
+                  return (
+                    <div
+                      key={index}
+                      className={index % 2 === 0 ? "userInput" : "chatBotResponse"}
+                    >
 
-                    <p
-                    style={{
-                      float: "left",
-                      color: "Black",
-                      fontWeight: "bold",
-                      fontSize: "calc(8pt + 2vw)",
-                      backgroundColor: "#41aaa9",
-                      borderRadius: "22px",
-                      padding: "1vw"
-                    }}
-                    > {response.username  === 'Code-Bot' ? "Code-E : " : `${userData.username}: `}</p>
-                    <p
-                    style={{
-                      justifyContent: "center",
-                      color:"green"
-                    }}
-                    >{response.responseText}</p>
+                      <p
+                      style={{
+                        color: "white",
+                        fontWeight: "bold",
+                        fontSize: "calc(6pt + 1vw)",
+                        backgroundColor: "#41aaa9",
+                        borderRadius: "22px",
+                        padding: "1vw",
+                        minWidth: "fit-content"
+                      }}
+                      > {response.username  === 'Code-Bot' ? "Code-E : " : `${userData.username}: `}</p>
+                      <p
+                      style={{
+                        padding: "4px",
+                        textAlign: "left",
+                        color:"white"
+                      }}
+                      >{response.responseText}</p>
 
-                  </div>
-                );
-              })}
-            </div>
-
-          )}
-        </form>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </>
+        </>
       ) : (
         <></>
       )}
