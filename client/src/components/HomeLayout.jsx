@@ -10,30 +10,14 @@ import backgroundImage from '../assets/HomeBackground.png';
  */
 function HomeLayout() {
   return (
-    <div id="homeBody" style={{
-        height: '100vh',
-        width: '100vw',
-        maxHeight: '100%',
-        maxWidth: '100%',
-        margin: '0',
+    <div className='layout' style={{
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: '100% auto',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center top',
     }}>
-        <header style={{
-          height: '15vw',
-          display: 'flex',
-          flexFlow: 'row nowrap',
-          left: '0',
-          top: '0',
-          width: '90%',
-          margin: '0 auto',
-        }}>
-            <object style={{
-              width: '25%',
-              left: '10%'
-              }} type="image/svg+xml" data={logo}>
+        <header>
+            <object  type="image/svg+xml" data={logo}>
               <img style={{ objectFit: 'contain' }} src={logo} alt="Nueral Network Icon" />
             </object>
           {!Auth.loggedIn() &&
@@ -46,11 +30,13 @@ function HomeLayout() {
             <div className='homeNav'>
               <Link to="/chat">Chat</Link>
               <Link to="/history">History</Link>
-              <Link onClick= {() => { Auth.logout(); }} to="/">Sign Out</Link>
+              <Link onClick= {Auth.logout} to="/">Sign Out</Link>
             </div>
           }
         </header>
-        <Outlet />
+        <main>
+          <Outlet />
+        </main>
     </div>
   );
 }

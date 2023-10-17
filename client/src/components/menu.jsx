@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Link } from "react-router-dom";
 import Auth from '../utils/auth';
 
@@ -10,27 +9,24 @@ import Auth from '../utils/auth';
  * @returns Menu dropdown for navigation
  */
 const Menu = () => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
-
   return (
-    <div className="menu">
-      <button onClick={toggleDropdown}>Menu</button>
-      {isDropdownOpen && (
-        <div className="dropdown-content">
-          <Link onClick= {toggleDropdown} to="/">Home</Link>
-          <Link onClick= {toggleDropdown} to="/chat">Chat</Link>
-          <Link onClick= {toggleDropdown} to="/history">History</Link>
-          <Link onClick= {() => {
-              Auth.logout();
-              toggleDropdown();
-            }} to="/">Sign Out</Link>
+    <aside id="menuAside">
+      {Auth.loggedIn() &&
+        <div className="menu">
+          <Link to="/">Home</Link>
+          <Link to="/chat">Chat</Link>
+          <Link to="/history">History</Link>
+          <Link onClick= {Auth.logout} to="/">Sign Out</Link>
         </div>
-      )}
-    </div>
+      }
+      {!Auth.loggedIn() &&
+        <div className="menu">
+          <Link to="/">Home</Link>
+          <Link to="/login">Log In</Link>
+          <Link to="/register">Register</Link>
+        </div>
+      }
+    </aside>
   );
 };
 
