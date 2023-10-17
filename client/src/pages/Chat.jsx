@@ -86,7 +86,7 @@ const Chat = () => {
   }
 
   return (
-    <>
+    <section className='chatGroup'>
       <div className="response-box"></div>
       {!chatOpen ? (
         <button
@@ -104,20 +104,21 @@ const Chat = () => {
       {chatOpen ? (
         <form onSubmit={handleQuestionSubmit} onKeyDown={pressEnter}>
           <textarea
-
             placeholder="Type your message..."
             onChange={handleInputChange}
             style={{
               borderRadius: "22px",
-              padding: "10px",
-              fontSize: "16px",
-              width: "80%",
-              minHeight: "256px",
-              maxHeight: "512px"
+              padding: "1vw",
+              fontSize: "calc(8pt + 2vw)",
+              minWidth: "40vw",
+              maxWidth: "60vw",
+              minHeight: "10vw",
+              maxHeight: "20vw",
+              outline: "none"
             }}
           />
           {/* Button to send messages */}
-          <button type="submit">Send</button>
+          <button className="chatSubmit" type="submit">Send</button>
           {loading ? <Spinner /> : (
             <div>
               {chatData.createChat.responses.toReversed().map((response, index) => {
@@ -133,10 +134,10 @@ const Chat = () => {
                       float: "left",
                       color: "Black",
                       fontWeight: "bold",
-                      fontSize: "16px",
+                      fontSize: "calc(8pt + 2vw)",
                       backgroundColor: "#41aaa9",
-                      borderRadius: "50px",
-                      padding: "2px"
+                      borderRadius: "22px",
+                      padding: "1vw"
                     }}
                     > {response.username  === 'Code-Bot' ? "Code-E : " : `${userData.username}: `}</p>
                     <p
@@ -156,7 +157,7 @@ const Chat = () => {
       ) : (
         <></>
       )}
-    </>
+    </section>
   );
 };
 

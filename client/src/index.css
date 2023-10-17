@@ -132,11 +132,25 @@ h3 {
   color: var(--titleTxtColor);
 }
 
-/* Form settings */
+/* Form/Chat settings */
 .formGroup {
   display: flex;
   flex-flow: column nowrap;
   margin: 0 auto;
+}
+.chatSubmit {
+  color: black;
+  border: none;
+  margin: 0;
+  border-radius: 22px;
+}
+.chatSubmit:hover {
+  border: none;
+}
+.chatGroup form{
+  display: inline-block;
+  background-color: var(--fieldBGColor);
+  border-radius: 22px;
 }
 input {
   border-radius: 22px;
@@ -144,6 +158,12 @@ input {
   padding: 12px 18px;
   margin: 4px;
   font-size: calc(8pt + 2vw);
+}
+
+textarea, input{
+  outline: none;
+  border: none;
+  resize: none;
 }
 
 /* Responsive UI */
