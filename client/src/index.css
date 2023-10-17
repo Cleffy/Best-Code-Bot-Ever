@@ -195,7 +195,7 @@ textarea, input{
 .card-text{
   text-align: left;
 }
-.button{
+.btn{
   font-size: calc(12pt + 1vw);
 }
 
