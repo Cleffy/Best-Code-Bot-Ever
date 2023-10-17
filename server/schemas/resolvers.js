@@ -78,40 +78,61 @@ const resolvers = {
         const openai =  new OpenAI({
           apiKey: process.env.OPEN_AI_APIKEY, // Defaults to process.env["OPENAI_API_KEY"]
         });
+       
         
-
         const userResponseObj = {
           responseText: args.responseText,
           username: args.username,
-        };
-
+        };      
+        
+        
+        // Sends api call to chatgpt service, when the response is returned we will grab the response and update the chat again
+        
+        
+        
         const userResponse = await Chat.findByIdAndUpdate(
           { _id: args.chatId }, //References Chat Id
           { $push: { responses: userResponseObj } }, // References the entire Response object, including the Id. Separated out as an object intentionally to avoid confusion with chat Id
           { new: true }
-        );
-
-       
-        // Sends api call to chatgpt service, when the response is returned we will grab the response and update the chat again
-
+          );
+          
+          const chat =  await Chat.findOne({_id: args.chatId});
+          
+          // Loop through all the responses and create an array that gets passed into messages which should display all of the previous conversations in the new query
+          const newResponseArray = chat.responses?.map((item)=> {
+            console.log(item);
+            let user;
+            if(item.username === 'Code-Bot'){
+              user = 'assistant'
+            }else{
+              user = 'user'
+            }
+            
+            const newObj = {
+              role: user,
+              content: item.responseText
+            }
+            return newObj
+          }) 
+        
+        // console.log('new respone',newResponseArray);
+        
         const chatCompletion = await openai.chat.completions.create({
-          messages: [{ role: 'user', content: args.responseText }],
+          messages:  newResponseArray,
           model: 'gpt-3.5-turbo',
         });
-
+        
         const chatResponseObj = {
-          responseText: chatCompletion.choices[0].message.content, //chat response
-          username: 'Code-Bot'
-        };
-
-        // console.log(chatResponseObj);
+            responseText: chatCompletion.choices[0].message.content, //chat response
+            username: 'Code-Bot'
+          };
 
         const apiResponse = await Chat.findByIdAndUpdate(
-          { _id: args.chatId }, //References Chat Id
-          { $push: { responses: chatResponseObj } }, // References the entire Response object, including the Id. Separated out as an object intentionally to avoid confusion with chat Id
-          { new: true }
-        );
-
+            { _id: args.chatId }, //References Chat Id
+            { $push: { responses: chatResponseObj } }, // References the entire Response object, including the Id. Separated out as an object intentionally to avoid confusion with chat Id
+            { new: true }
+          );
+        
         return apiResponse
       }
       throw AuthenticationError;

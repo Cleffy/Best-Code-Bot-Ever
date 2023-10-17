@@ -5,9 +5,11 @@
   --titleTxtColor: #fceee7;
   --bodyTextColor: #000000;
   --fieldBGColor: #ffffff;
+  --dkBkgTextColor: #ffffff;
+  --linkBkgColor: rgb(65, 170, 169);
   
   color: var(--bodyTextColor);
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: forma-djr-micro, sans-serif;
   line-height: normal;
   font-weight: 500;
   
@@ -28,6 +30,60 @@ body {
   min-width: 320px;
   min-height: 100vh;
 }
+
+/* Home Layout */
+/* Layout settings */
+#layoutBody header {
+  display: flex;
+  flex-flow: row wrap;
+  left: 0;
+  top: 0;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+}
+#layoutBody .title{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+}
+#layoutBody .nav{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+}
+.homeNav{
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  width: 75%;
+}
+.homeNav a{
+  font-size: 2.5vw;
+  margin: 0 10px;
+  color: var(--dkBkgTextColor);
+  border-left: 0.5vw double var(--dkBkgTextColor);
+  border-right: 0.5vw double var(--dkBkgTextColor);
+  border-radius: 0.5vw ;
+  padding: 0.5vw 1vw;
+  -webkit-transition: background-image 0.5s, border-style 0.5s, border-width 0.25s, border-bottom-color 0.25s, background-color 0.1s;
+  transition: background-image 0.5s, border-style 0.5s, border-width 0.25s, border-bottom-color 0.25s, background-color 0.1s;
+}
+.homeNav a:hover{
+  border-style: none solid solid solid;
+  border-bottom-width: 0.1vw;
+  border-bottom-color: var(--linkBkgColor);
+  background-image: linear-gradient(transparent, var(--linkBkgColor));
+  color: var(--dkBkgTextColor);
+}
+.homeNav a:focus,
+.homeNav a:focus-visible {
+  background-color: var(--linkBkgColor);
+}
+
 
 /* Button settings */
 button {
@@ -83,30 +139,6 @@ input {
   padding: 12px 18px;
   margin: 4px;
   font-size: 16pt;
-}
-
-/* Layout settings */
-#layoutBody header {
-  display: flex;
-  flex-flow: row wrap;
-  left: 0;
-  top: 0;
-  width: 100%;
-  justify-content: space-evenly;
-  align-items: center;
-}
-#layoutBody .title{
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  width: 60%;
-}
-#layoutBody .nav{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40%;
 }
 
 /* Menu settings */
