@@ -12,7 +12,7 @@
   font-family: forma-djr-micro, sans-serif;
   line-height: normal;
   font-weight: 500;
-  font-size: 16px;
+  font-size: calc(6pt + 1vw);
   
   background-color: var(--mainBGColor);
 
@@ -80,6 +80,7 @@ a, button{
   border-style: none double none double;
   border-color: var(--dkBkgTextColor);
   border-radius: 0.5vw;
+  border-width: 0 0.25vw 0 0.25vw;
   padding: 0.5vw 1vw;
   background-color: rgba(0, 0, 0, 0);
   cursor: pointer;
@@ -157,13 +158,32 @@ input {
   border: 1px solid transparent;
   padding: 12px 18px;
   margin: 4px;
-  font-size: calc(8pt + 2vw);
+  font-size: calc(6pt + 1vw);
 }
 
 textarea, input{
   outline: none;
   border: none;
   resize: none;
+}
+
+.userInput, .chatBotResponse{
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+  border-style: none double none double;
+  border-radius: 0.5vw;
+  border-width: 0 0.25vw 0 0.25vw;
+  padding: 0.5vw;
+  margin: 0.5vw;
+  max-width: 50vw;
+}
+
+.userInput{
+  border-color: rgba(0, 255, 251, 0.2);
+}
+.chatBotResponse{
+  background-color: rgba(0, 76, 255, 0.2);
 }
 
 /* Responsive UI */
@@ -176,22 +196,11 @@ textarea, input{
   main {
     flex-direction: column;
   }
+  .userInput, .chatBotResponse{
+    max-width: 100%;
+  }
 }
 
-.userInput{
-  display: inline-block;
-  background-color:#fceee7;
-  border-radius: 22px;
-  padding:10px;
-  margin: 10px;
-}
-
-.chatBotResponse{
-  background-color: white;
-  border-radius: 22px;
-  padding:10px;
-  margin: 10px;
-}
 /*
 @media (prefers-color-scheme: light) {
   :root {
