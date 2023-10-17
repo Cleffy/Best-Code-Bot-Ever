@@ -23,7 +23,7 @@ const Menu = () => {
         <div className="menu">
           <Link to="/">Home</Link>
           <Link to="/login">Log In</Link>
-          <Link to="/register">Register</Link>
+          <Link to="/register">Sign Up</Link>
         </div>
       }
     </aside>
