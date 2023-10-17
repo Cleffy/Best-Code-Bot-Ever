@@ -179,6 +179,7 @@ textarea, input{
 }
 
 .userInput{
+  display: inline-block;
   background-color:#fceee7;
   border-radius: 22px;
   padding:10px;
