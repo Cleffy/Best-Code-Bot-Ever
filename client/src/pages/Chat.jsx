@@ -103,7 +103,6 @@ const Chat = () => {
 
       {chatOpen ? (
         <form onSubmit={handleQuestionSubmit} onKeyDown={pressEnter}>
-          <h2>New Chat</h2>
           <textarea
 
             placeholder="Type your message..."
