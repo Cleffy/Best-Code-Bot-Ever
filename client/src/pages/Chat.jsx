@@ -129,7 +129,27 @@ const Chat = () => {
                     className={index % 2 === 0 ? "userInput" : "chatBotResponse"}
                   >
 
+
                     <p> {response.username === 'Code-Bot' ? "Code Bot: " : `${userData.username}: `}{response.responseText}</p>
+
+                    <p
+                    style={{
+                      float: "left",
+                      color: "Black",
+                      fontWeight: "bold",
+                      fontSize: "16px",
+                      backgroundColor: "#41aaa9",
+                      borderRadius: "50px",
+                      padding: "2px"
+                    }}
+                    > {response.username  === 'Code-Bot' ? "Code-E : " : `${userData.username}: `}</p>
+                    <p
+                    style={{
+                      justifyContent: "center",
+                      color:"green"
+                    }}
+                    >{response.responseText}</p>
+
                   </div>
                 );
               })}
