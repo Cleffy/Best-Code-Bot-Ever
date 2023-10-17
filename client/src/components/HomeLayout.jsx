@@ -23,7 +23,7 @@ function HomeLayout() {
           {!Auth.loggedIn() &&
             <div className='homeNav'>
               <Link to="/login">Log In</Link>
-              <Link to="/register">Register</Link>
+              <Link to="/register">Sign Up</Link>
             </div>
           }
           {Auth.loggedIn() &&
