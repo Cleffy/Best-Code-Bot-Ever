@@ -51,7 +51,8 @@ const History = () => {
                             {chats.toReversed().map((chat, index) => {
                                 return (
                                     <Card.Text key={index}>
-                                        <Button onClick={()=>handleChatClick(index)}>{chat.responses[0].responseText.split(" ").slice(0, 8).join(" ")}{chat.responses[0].responseText.split(" ").length >= 8 ? '...' : ''}
+                                        {/* display the chats, top to bottom, in order from most to least recent. we have to start from chats.length-1 (the end of the array) because the chats array is in order from least to most recent and the map is affected by the toReversed() function. */}
+                                        <Button onClick={()=>handleChatClick(chats.length-1 - index)}>{chat.responses[0].responseText.split(" ").slice(0, 8).join(" ")}{chat.responses[0].responseText.split(" ").length >= 8 ? '...' : ''}
                                         {/* this code assumes that at least the first 8 words are separated evenly (by 7 spaces). to start, the split() function converts the first responseText string (the initial question submitted by the user) into an array of substrings separated by spaces. then the slice() function returns a copy of the array that only includes the first 8 entries (indices 0 through 7). finally, the join() function joins the individual elements of the array into a string, separating each element by the character specified by the parameter, which in this case is the space character (" "). in summary, this code takes the first 8 words of the first user query and displays the resulting string as the title for each history entry. if the query is at most 8 characters long, the entire query will be displayed as the title. */}
                                         <br></br>
                                         {/* put the date and time the chat was created on a different line from its title */}
