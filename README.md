@@ -67,7 +67,7 @@ The production team behind Code-E:
 
 To contribute to this project, clone or fork the repo, make some edits in a new branch, then submit a pull request. It’ll be merged to our main branch upon testing and approval. 
 
-With special thanks to the other individuals who assisted us along our jourey building Code-E:
+With special thanks to the other individuals who assisted us along our journey building Code-E:
 - Tutors: Jose Lopez and Robert Kurle 
 - TA: Michael Seaman
 - Consultant: Robbert Wijtman
