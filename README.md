@@ -13,12 +13,12 @@
 
 ## Description 
 
-Code-E is a full-stack web applicationthat helps users simplify their coding journey. Code-E aims to enhance developers' coding skills and provide valuable insights into their code. This application is built using React, GraphQL, Node, Express, MongoDB, Mongoose, and is deployed on Heroku. 
+Code-E is a full-stack web application that helps users simplify their coding journey. Code-E aims to enhance developers' coding skills and provide valuable insights into their code. This application is built using React, GraphQL, Node, Express, MongoDB, Mongoose, and is deployed on Heroku. 
 
 
 ## Features 
 
-Users can create new accounts or use existing ones. From there they can use the menu to navigate between the home page, the chat window, history page, and the ability to log out. In the chat window, users can prompt Code-E with code related questions. An answer will be generated and presented to the user. From there, the user can further query Code-E if further clarification is required. If the answer is satisfactory, the entire chat thread will be saved to the history page, with a unique title refrencing the initial question. Users have the ability to view their chat history if needed.  
+Users can create new accounts or use existing ones. From there they can use the menu to navigate between the home page, the chat window, history page, and the ability to log out. In the chat window, users can prompt Code-E with code related questions. An answer will be generated and presented to the user. From there, the user can further query Code-E if further clarification is required. If the answer is satisfactory, the entire chat thread will be saved to the history page, with a unique title referencing the initial question. Users have the ability to view their chat history if needed.  
 
 
 ## Installation  
@@ -39,7 +39,7 @@ Users can create new accounts or use existing ones. From there they can use the 
 
 4. Sign up or log in to an existing account. 
 
-5. Create new chats or review previous converstations with Code-E on the history page.   
+5. Create new chats or review previous conversations with Code-E on the history page.   
 
 ## Images
 ![Screenshot](./public/images/Code-E%20Homepage.PNG)
